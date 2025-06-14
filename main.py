@@ -1,9 +1,146 @@
 import random
 import time
+import inspect
+import sys
+from datetime import datetime
 
 
-def goto(n):  # TODO
-    pass
+def goto(instruction_number: int) -> None:
+    time.sleep(1)
+    """Make a jump to a specific BASIC instruction number"""
+    print(f"goto({instruction_number})")
+    module = sys.modules["__main__"]
+    source_lines, _ = inspect.getsourcelines(module)
+    line = -1
+    for idx, content in enumerate(source_lines):
+        if content.strip().endswith(f"# {instruction_number:05d}"):
+            line = idx + 1
+            break
+    assert line != -1
+    scope = []
+    for idx, source_line in enumerate(source_lines[:line]):
+        if source_line.startswith("def "):
+            scope.append(source_line)
+            while source_lines[idx + 1].startswith(" "):
+                idx += 1
+                scope.append(source_lines[idx])
+    source_lines = source_lines[line - 1 :]
+    first_indentation_level = len(source_lines[0]) - len(source_lines[0].lstrip())
+    for index, source_line in enumerate(source_lines):
+        indentation_level = len(source_line) - len(source_line.lstrip())
+        if indentation_level == 0:
+            break
+        indentation_start = min(indentation_level, first_indentation_level)
+        source_lines[index] = source_lines[index][indentation_start:]
+    source_code = "".join(scope + source_lines)
+    print(f" -> {line}")
+    exec(source_code, module.__dict__)
+    sys.exit(0)
+
+
+def call_method_91000():
+    print("Stuga är ett ADVENTURE-liknande spel på svenska.")  # 91000
+    print("Du ska utforska ett hus och dess omgivningar. Datorn är dina")  # 91005
+    print("ögon och händer. Ge enkla order till datorn, till exempel:")  # 91010
+    print("SLÄPP TAVLAN, GE SAFTFLASKAN, NORR, UPPÅT, VÄNSTER...")  # 91015
+    print("Utanför stugan förflyttar du dej med väderstreck som kan för-")  # 91020
+    print("kortas till N, S, V, Ö, NV, NÖ, SÖ och SV. Inne i stugan används")  # 91025
+    print("riktningarna FRAMÅT (F), BAKÅT (B), VÄNSTER (V), HÖGER (H),")  # 91030
+    print("UPPÅT (U) samt NERÅT (N).")  # 91035
+    print("I vissa rum kan du få särskild hjälp (det ger poängavdrag) om du")  # 91040
+    print("skriver HJÄLP. INVENT listar alla saker du bär på, POÄNG skriver")  # 91045
+    print("ut hur många poäng du har och TITTA skriver ut den fullständiga")  # 91050
+    print("beskrivningen av rummet. Ge kommandot SLUTA när du är färdig.")  # 91055
+    print("Skriv INFO för att få en lista över kommandona.")  # 91060
+    print()  # 91065
+    print("Du ska försöka att skaffa så många poäng som möjligt. Poäng får")  # 91070
+    print("du genom att upptäcka nya ställen och ta vara på värdesaker.")  # 91075
+    print()  # 91080
+
+
+def FNL_(X1_: str, X: int) -> str:  # 90800
+    if X <= 0:
+        return ""
+    if X > len(X1_):
+        return f"{X1_}"
+    return X1_[:X]  # 90810
+
+
+def FNC_(A_: str) -> str:  # 90700
+    return A_  # todo
+    X1_ = FNL_(A_, 130)
+    X2_ = ""
+    FNC_ = ""  # 90705
+    if len(X1_) > 20:
+        X2_ = FNM_(X1_, 21)
+    X1_ = FNL_(X1_, 20)  # 90710
+    # ?CHANGE X1_ TO X  # 90715
+    for X2 in range(1, X[0]):
+        if X[X2] > 96 and X[X2] < 126:
+            X[X2] -= 32  # 90720
+    # ? CHANGE X TO X1_  # 90750
+    FNC_ = FNC_ + X1_  # 90755
+    if X2_ != "":
+        X1_ = X2_
+        X2_ = ""
+        goto(90710)  # 90760
+
+
+def FNA_(I1: int) -> str:  # 90600
+    if I1 == 7 or I1 == 26:
+        return "inga "
+    elif I1 == 9 or I1 == 11 or I1 == 22:
+        return "inget "
+    else:
+        return "ingen "  # 90602
+
+
+def FNS_(X1_: str, X: int) -> str:  # 90650
+    D = ECHO(1)  # 90655
+    D = time.sleep(X)  # 90660
+    if D:
+        print("Tyst, jag " + X1_)
+    _ = input()  # "!"_A_
+    goto(90660)  # 90665
+    D = ECHO(0)
+    FNS_ = ""
+    print()  # 90670
+
+
+def FNR_(X1_: str, X: int) -> str:  # 90820
+    if X <= 0:
+        return ""
+    if X > len(X1_):
+        return f"{X1_}"
+    return X1_[X:]  # 90830
+
+
+def FNM_(X1_: str, X: int) -> str:  # 90840
+    if X > len(X1_) or X <= 0:
+        return ""
+    return ""  # todo
+    # FNM_ = MID_(X1_, X, len(X1_) - X + 1)  # 90850
+
+
+def FNF_(X):  # 90900
+    # ? READ X1_ FOR I1=0 TO X(X)  # 90910
+    FNF_ = X1_  # 90920
+    # ? READ X1_ FOR I1=X(X)+1 TO 5  # 90930
+
+
+def FNI_(X1_):  # 90950
+    # ? if M2%=1% and W_!= CHR_(3):
+    # ?     print()#2,W_ #&&&&&  # 90960
+    print(X1_)  # 90970
+    # ? if M3%==0%:
+    # ?     _ = input() # ""_W_
+    goto(90990)  # 90980
+    # if END#3:
+    # ?     M3%=0%
+    goto(90980)  # &&&&&  # 90982
+    _ = input()  # LINE #3,W_
+    print(W_)  # &&&&&  )# 90984
+    return W_  # 90990
 
 
 def call_method(n):  # TODO
@@ -11,11 +148,17 @@ def call_method(n):  # TODO
 
 
 # Version: 4O(114)-4     821227/VE  # 00001
+S1 = S2 = X1 = 0  # todo
+ERROR = ERL = 0  # todo
+ERR = 27  # todo
+TIME_ = 0  # todo
+DATE_ = datetime.today().strftime("%d-%b").upper()
 S = [0] * 55  # 00002
 W = [""] * 7
-J = [0] * 100
+W_ = W  # todo
+J = [0] * 101
 A = [[0] * 4] * 31
-X = [0] * 20
+X = 0
 goto(90000)  # 00003
 # ************************  S T U G A  *****************************  # 00005
 # ******* STUGA är skrivet av Viggo Eriksson, Kimmo Eriksson *******  # 00010
@@ -107,7 +250,7 @@ call_method(12200)  # 01911
 if X == 0 or X > 6:
     goto(1908)  # 01913
 
-goto({1: 1970, 2: 1919, 3: 1939, 4: 8095, 5: 1950, 6: 1929}[X])  # 01914
+goto([1970, 1919, 1939, 8095, 1950, 1929][X])  # 01914
 call_method(11000)  # 01918
 print("Du är i en svängig stor labyrint.")  # 01919
 Z = 92
@@ -1995,16 +2138,16 @@ if A[1] == 1:
 S[2] = S[2] - 5
 goto(10052)  # 10096
 # VIOLS SUBFELMEDDELANDERUTIN 3  # 11000
-if X1 > 0 or S1 > 0:
+if X1 > 0 or S1 > 0:  # 11001
     goto(11100)
 else:
-    S[50] = S[50] - 1  # 11001
-if INSTR(1, A_, "HJÄLP") > 0:
+    S[50] = S[50] - 1
+if INSTR(1, A_, "HJÄLP") > 0:  # 11002
     print("Du kan inte få någon hjälp här.")
-goto(11100)  # 11002
-if A_ == "N" or A_ == "V":
+    goto(11100)
+if A_ == "N" or A_ == "V":  # 11003
     print("Du kan inte gå ditåt.")
-goto(11100)  # 11003
+    goto(11100)
 if INSTR(1, "*NORR*SÖDER*VÄSTER*ÖSTER*NV*NÖ*NO*SV*SÖ*SO", "*" + A_) > 0:
     goto(11200)  # 11004
 if INSTR(1, "*NORDVÄST*NORDÖST*NORDOST*SYDVÄST*SYDÖST*SYDOST", "*" + A_) > 0:
@@ -2770,15 +2913,18 @@ goto(12210)  # 12928
 # ?     goto(12970) #&&&&&  # 12950
 print("Vad heter loggfilen")
 # ?_ = input() # LINE M2_ #&&&&&  )# 12951
-goto([12962][ERROR])  # &&&&&  # 12952
+if ERROR:
+    goto(12962)  # &&&&&  # 12952
 # ?OPEN M2_ FOR OUTPUT AS FILE #2 #&&&&&  # 12954
-goto([97000][ERROR])  # &&&&&  # 12956
+if ERROR:
+    goto(97000)  # &&&&&  # 12956
 print("Nu loggas alla kommandon på filen " + M2_)  # &&&&&  )# 12958
 # ?M2%=1%
 W_ = CHR_(3)
 goto(12210)  # &&&&&  # 12960
 # ?#? RESUME 12964 #&&&&&  # 12962
-goto([97000][ERROR])  # &&&&&  # 12964
+if ERROR:
+    goto(97000)  # &&&&&  # 12964
 print("? Jag kan inte öppna " + M2_)  # &&&&&  )# 12966
 goto(12210)  # &&&&&  # 12968
 # ?M2%=0%
@@ -2793,19 +2939,22 @@ print("Vad heter loggfilen")
 # ?  if M3%=1%:
 # ?     CLOSE 3
 # ?M3%=0% #&&&&&  # 12976
-goto([12985][ERROR])  # &&&&&  # 12977
+if ERROR:
+    goto(12985)  # &&&&&  # 12977
 # ?OPEN M3_ FOR_ = input() # AS FILE #3 #&&&&&  # 12979
-goto([97000][ERROR])  # &&&&&  # 12981
+if ERROR:
+    goto(97000)  # &&&&&  # 12981
 # ?M3%=1%
 goto(12210)  # &&&&&  # 12983
 # ?#? RESUME 12987 #&&&&&  # 12985
 print("? Jag kan inte öppna " + M3_)  # &&&&&  )# 12987
-goto([97000][ERROR])  # &&&&&  # 12988
+if ERROR:
+    goto(97000)  # &&&&&  # 12988
 goto(12210)  # &&&&&  # 12989
-if S[30] == Z:
+if S[30] == Z:  # 12999
     goto(30000)
 else:
-    pass  # ? return  # 12999
+    pass  # ? return
 Z = 58  # XXX FARSTUN XXXXX  # 13000
 print("Du är i farstun, ett litet rum med en dörr bakom dej")  # 13002
 print("och en stor portal rakt fram.")  # 13003
@@ -3171,8 +3320,8 @@ print("Fozzi mumlar något om en faun och knuffar ut dej ur rummet.")  # 18105
 goto([40000, 1960, 1960][int(random.random() * 3) + 1])  # 18110
 print("Du trampas på tårna av en faun, så du springer ut igen.")  # 18120
 goto(18110)  # 18125
-if S[2] > 50:
-    goto(20005)  # XXX BRYGGAN XXXXX  # 20000
+if S[2] > 50: # 20000
+    goto(20005)  # XXX BRYGGAN XXXXX
 print("Du står på en brygga någonstans i Småland. Bakom din solvärmda rygg")  # 20001
 print("åker man vattenskidor. En kyrkklocka (som du inte ser) slår tolv.")  # 20002
 print("Du ser ett hus rakt fram.")  # 20003
@@ -3180,14 +3329,14 @@ goto(20006)  # 20004
 print("Du är på bryggan och ser ett hus rakt fram.")  # 20005
 Z = 70  # 20006
 call_method(15200)  # 20007
-if S1 > 0:
-    goto(20007)  # 20008
-if X1 == 1:
-    goto(20000)  # 20009
-if X != 0:
+if S1 > 0:  # 20008
+    goto(20007)
+if X1 == 1:  # 20009
+    goto(20000)
+if X != 0:  # 20010
     goto(
         [20030, 9361, 20200, 20013, 20020, 20013, 20011, 20013, 20070, 2107][X]
-    )  # 20010
+    )
 call_method(11000)  # 20011
 goto(20005)  # 20012
 print("Du kan väl inte gå på vattnet?")  # 20013
@@ -4061,9 +4210,11 @@ call_method(11000)  # 41105
 print("Du är i garderoben.")  # 41110
 goto(41040)  # 41120
 # *** SPARA *** &&&&& DEC-10 SPECIELL KOD PÅ 80000-80565  # 80000
-goto([80500][ERROR])  # &&&&&  # 80005
+if ERROR:  # 80005
+    goto(80500)  # &&&&&
 # ?OPEN "STUGA.SPA" FOR OUTPUT AS FILE #1 #&&&&&  # 80100
-goto([97000][ERROR])  # &&&&&  # 80102
+if ERROR:  # 80102
+    goto(97000)  # &&&&&
 # ?MARGIN #1,132
 # ?QUOTE #1
 X = 0  # &&&&&  # 80105
@@ -4087,9 +4238,11 @@ print()  # 1,J(I); FOR I=0 TO J[0] #&&&&&  # 80140
 print("Det nuvarande läget är sparat på filen STUGA.SPA.")  # &&&&&  )# 80155
 goto(12210)  # &&&&&  # 80160
 # *** ÅTERSKAPA *** #&&&&&  # 80200
-goto([80500][ERROR])  # &&&&&  # 80202
+if ERROR:  # 80202
+    goto(80500)  # &&&&&
 # ? OPEN "STUGA.SPA" FOR_ = input() # AS FILE #1 #&&&&&  # 80205
-goto([80520][ERROR])  # &&&&&  # 80210
+if ERROR:  # 80210
+    goto(80520)  # &&&&&
 MARGIN  # 1,132
 X = 0  # &&&&&  # 80300
 _ = input()  # #1,A[0] #&&&&&  # 80305
@@ -4104,7 +4257,8 @@ for i in range(0, S[0]):
     X = X + S(I) / (PI - 1)  # &&&&&  # 80325
 if S[24] == 0:
     S[24] = 6  # _____ #&&&&&  # 80326
-goto([80540][ERROR])  # _____ Koll om gammal fil. Raden bör tas bort. #&&&&&  # 80327
+if ERROR:  # 80327
+    goto(80540)  # _____ Koll om gammal fil. Raden bör tas bort. #&&&&&
 # ?_ = input() # #1,G,Z,I1 #&&&&&  # 80329
 # ?_ = input() # #1,W_(I) FOR I=0 TO S[24] #&&&&&  # 80330
 for i in range(0, S[24]):
@@ -4118,7 +4272,8 @@ G = G * 2
 Z = Z / 7  # &&&&&  # 80340
 X = X + G + Z  # &&&&&  # 80341
 # ? CLOSE 1 #&&&&&  # 80342
-goto([97000][ERROR])  # &&&&&  # 80343
+if ERROR:  # 80343
+    goto(97000)  # &&&&&
 if ABS(X - I1) > 0.03:
     print("Fel på STUGA.SPA!")
 STOP  # &&&&&  )# 80345
@@ -4178,19 +4333,22 @@ goto(
 )  # &&&&&  # 80400
 print("? Kan inte öppna STUGA.SPA.")  # &&&&&  )# 80500
 # ? #? RESUME 80510 #&&&&&  # 80505
-goto([97000][ERROR])  # &&&&&  # 80510
+if ERROR:  # 80510
+    goto(97000)  # &&&&&
 goto(12210)  # &&&&&  # 80515
 print("Fel inuti STUGA.SPA!")  # &&&&&  )# 80520
 # ? CLOSE 1 #&&&&&  # 80525
 # ? #? RESUME 99999 #&&&&&  # 80530
 # ? #? RESUME 80545 #_____ Raderna 80540-80565 bör tas bort småningom. #&&&&&  # 80540
-goto([80520][ERROR])  # &&&&&  # 80545
+if ERROR:  # 80545
+    goto(80520)  # &&&&&
 _ = input()  # #1,W_(I) FOR I=0 TO 6 #&&&&&  # 80550
 _ = input()  # #1,W_(3) #Starttid #&&&&&  # 80552
 _ = input()  # #1,A1_ FOR I=8 TO 14 #&&&&&  # 80555
 _ = input()  # #1,G,Z,I1 #&&&&&  # 80560
 goto(80332)  # _____ #&&&&&  # 80565
-goto([97000][ERROR])  # XXXXX NU BÖRJAR VI XXXXX  # 90000
+if ERROR:  # 90000
+    goto(97000)  # XXXXX NU BÖRJAR VI XXXXX
 W_[3] = TIME_
 W_[4] = DATE_  # 90002
 S[30] = 96  # 90003
@@ -4211,7 +4369,7 @@ W_[1] = (
 call_method(702)  # 90056
 W_[5] = "004008009010011012013014015016017021022023024025031034035036038040"  # 90057
 W_[5] = W_[5] + "043044046048052054056058059062069078080089093095096097100"  # 90058
-S[37] = len(W_(5)) / 3  # 90059
+S[37] = len(W_[5]) / 3  # 90059
 S[45] = 1  # 90060
 S[48] = -1
 S[20] = -1  # 90062
@@ -4223,7 +4381,7 @@ else:
     A1 = 0  # 90068
 print("Välkommen till VIOLs stuga!!!!!")  # 90070
 print()  # 90072
-_ = input()  # "Har du vågat dej in här förut"+A_  # 90090
+A_ = input("Har du vågat dej in här förut? ")  # 90090
 A_ = FNC_(A_)
 print()  # 90091
 if FNL_(A_, 1) == "J":
@@ -4233,7 +4391,7 @@ if FNL_(A_, 1) == "N":
 print("JA eller NEJ!")
 goto(90090)  # 90098
 print("Då behövs lite hjälp och instruktioner!")  # 90100
-call_method(91000)  # 90110
+call_method_91000()  # 90110
 print("LYCKA TILL!")  # 90150
 print()  # 90153
 A[0] = 30
@@ -4242,8 +4400,8 @@ S[24] = 6
 J[0] = 100  # 90200
 for I in range(1, 12):  # 90202
     pass  # ? READ A_(I,1),A_(I,2),A_(I,3),A_(I,4),A[I]  # 90204
-for I in range(15, A[0]):  # 90208
-    pass  # ? READ A_(I,1),A_(I,2),A_(I,3),A_(I,4),A[I]  # 90210
+#? for I in range(15, A[0]):  # 90208
+#?     pass  # ? READ A_(I,1),A_(I,2),A_(I,3),A_(I,4),A[I]  # 90210
 goto(20000)  # 90214
 # ? DATA "DIAMANT","DIAMA","DIAMA","diamanten",15  # 90300
 # ? DATA "GURKA","GURKA","ILLAL","gurkan",0  # 90302
@@ -4292,110 +4450,13 @@ goto(20000)  # 90214
 # ? DATA "svårflörtade","sömniga"  # 90432
 # ? DATA "på ett helt annat ställe","för sent","i grevens tid"  # 90434
 # ? DATA "en liten aning för tidigt","samtidigt","inte"  # 90436
-# ? DEF FNA_(I1)  # 90600
-if I1 == 7 or I1 == 26:
-    FNA_ = "inga "
-else:
-    if I1 == 9 or I1 == 11 or I1 == 22:
-        FNA_ = "inget "
-    else:
-        FNA_ = "ingen "  # 90602
-# ? FNEND  # 90604
-# ? DEF FNS_(X1_,X)  # 90650
-D = ECHO(1)  # 90655
-D = time.sleep(X)  # 90660
-if D:
-    print("Tyst, jag " + X1_)
-_ = input()  # "!"_A_
-goto(90660)  # 90665
-D = ECHO(0)
-FNS_ = ""
-print()  # 90670
-FNEND  # 90675
-# ?DEF FNC_(A_)  # 90700
-X1_ = FNL_(A_, 130)
-X2_ = ""
-FNC_ = ""  # 90705
-if len(X1_) > 20:
-    X2_ = FNM_(X1_, 21)
-X1_ = FNL_(X1_, 20)  # 90710
-# ?CHANGE X1_ TO X  # 90715
-for X2 in range(1, X[0]):
-    if X[X2] > 96 and X[X2] < 126:
-        X[X2] -= 32  # 90720
-# ? CHANGE X TO X1_  # 90750
-FNC_ = FNC_ + X1_  # 90755
-if X2_ != "":
-    X1_ = X2_
-X2_ = ""
-goto(90710)  # 90760
-FNEND  # 90765
-# ? DEF FNL_(X1_,X)  # 90800
-if X <= 0:
-    FNL_ = ""
-goto(90815)  # 90805
-if X > len(X1_):
-    FNL_ = X1_
-else:
-    FNL_ = LEFT_(X1_, X)  # 90810
-FNEND  # 90815
-# ? DEF FNR_(X1_,X)  # 90820
-if X <= 0:
-    FNR_ = ""
-goto(90835)  # 90825
-if X > len(X1_):
-    FNR_ = X1_
-else:
-    FNR_ = RIGHT_(X1_, X)  # 90830
-FNEND  # 90835
-# ? DEF FNM_(X1_,X)  # 90840
-if X > len(X1_) or X <= 0:
-    FNM_ = ""
-goto(90855)  # 90845
-FNM_ = MID_(X1_, X, len(X1_) - X + 1)  # 90850
-# ? FNEND  # 90855
-# ? DEF FNF_(X)  # 90900
-# ? READ X1_ FOR I1=0 TO X(X)  # 90910
-FNF_ = X1_  # 90920
-# ? READ X1_ FOR I1=X(X)+1 TO 5  # 90930
-# ? FNEND  # 90940
-# ? DEF FNI_(X1_)  # 90950
-# ? if M2%=1% and W_!= CHR_(3):
-# ?     print()#2,W_ #&&&&&  # 90960
-print(X1_)  # 90970
-# ? if M3%==0%:
-# ?     _ = input() # ""_W_
-goto(90990)  # 90980
-# if END#3:
-# ?     M3%=0%
-goto(90980)  # &&&&&  # 90982
-_ = input()  # LINE #3,W_
-print(W_)  # &&&&&  )# 90984
-FNI_ = W_  # 90990
-# ? FNEND  # 90995
-print("Stuga är ett ADVENTURE-liknande spel på svenska.")  # 91000
-print("Du ska utforska ett hus och dess omgivningar. Datorn är dina")  # 91005
-print("ögon och händer. Ge enkla order till datorn, till exempel:")  # 91010
-print("SLÄPP TAVLAN, GE SAFTFLASKAN, NORR, UPPÅT, VÄNSTER...")  # 91015
-print("Utanför stugan förflyttar du dej med väderstreck som kan för-")  # 91020
-print("kortas till N, S, V, Ö, NV, NÖ, SÖ och SV. Inne i stugan används")  # 91025
-print("riktningarna FRAMÅT (F), BAKÅT (B), VÄNSTER (V), HÖGER (H),")  # 91030
-print("UPPÅT (U) samt NERÅT (N).")  # 91035
-print("I vissa rum kan du få särskild hjälp (det ger poängavdrag) om du")  # 91040
-print("skriver HJÄLP. INVENT listar alla saker du bär på, POÄNG skriver")  # 91045
-print("ut hur många poäng du har och TITTA skriver ut den fullständiga")  # 91050
-print("beskrivningen av rummet. Ge kommandot SLUTA när du är färdig.")  # 91055
-print("Skriv INFO för att få en lista över kommandona.")  # 91060
-print()  # 91065
-print("Du ska försöka att skaffa så många poäng som möjligt. Poäng får")  # 91070
-print("du genom att upptäcka nya ställen och ta vara på värdesaker.")  # 91075
-print()  # 91080
-# ? return  # 91090
+
+
 if ERR != 27:
     goto(97004)  # 97000
 if S2 == 0:
     S1 = 1
-# ? RESUME 12999  # 97001
+    goto(12999)  # 97001
 X = 0
 X1 = 0
 if S1 < 2:
@@ -4403,16 +4464,17 @@ if S1 < 2:
 else:
     S1 = 1
 S2 = 0  # 97002
-# ? RESUME 12999  # 97003
+goto(12999)  # 97003
 print("? Fel på rad", ERL, ". Felkod:", ERR)  # 97004
 # ? RESUME  # 97006
 # %%%%% Raderna 97010 - 98034 behövs bara på Oden och Nadja  # 97010
 print("? Kan inte öppna STUGA.TXT<11,155>. Ge kommandot")  # %%%%%  )# 97011
 print("  PATH/ADD:DSKD: innan du kör STUGA nästa gång")  # %%%%%  )# 97012
 print("  så slipper du förhoppningsvis denna utskrift.")  # %%%%%  )# 97014
-# ? RESUME 99996 #%%%%%  # 97016
+goto(99996) #%%%%%  # 97016
 _ = input()  # "S, A, A_, W_ eller Z; index; S eller L:"_A1_,A1%,A2_ #%%%%%  # 98000
-goto([98020][ERROR])  # %%%%%  # 98001
+if ERROR:  # 98001
+    goto(98020)  # %%%%%
 if A2_ == "S":
     _ = input()  # "Nytt värde:"_A3_ #%%%%%  # 98002
 # ?if A1_=="S":
@@ -4432,13 +4494,14 @@ if A1_ == "Z":
 if A2_ == "S":
     Z = VAL(A3_)
 goto(80360)  # %%%%%   # 98007
-if A1_ == "A_":
-    goto(98030)  # %%%%%  # 98008
-goto([97000][ERROR])  # %%%%%  # 98009
+if A1_ == "A_":  # 98008
+    goto(98030)  # %%%%%
+if ERROR:  # 98009
+    goto(97000)  # %%%%%
 A_ = FNI_("")
 goto(12214)  # %%%%%  # 98010
 print("Felaktigt index!")  # %%%%%  )# 98020
-# ? RESUME 98009 #%%%%%  # 98022
+goto(98009) #%%%%%  # 98022
 _ = input()  # "1, 2, 3 eller 4:"_A2% #%%%%%  # 98030
 # ?print( A_(A1%,A2%) )
 # ?if A2_=="S":
@@ -4521,7 +4584,8 @@ for I in range(1, 50):  # %%%%%):# 99355
         W_[I] = FNL_(W_[I], 80)  # %%%%%  # 99370
 
 print("Tack!")  # %%%%%  )# 99395
-goto([97010][ERROR])  # %%%%%  # 99400
+if ERROR:
+    goto(97010)  # %%%%%  # 99400
 # OPEN "STUGA.TXT[11,155]_80" AS FILE :1 #%%%%%  # 99402
 # SET :1,LOF(:1)+1 #%%%%%  # 99405
 A_ = DATE_ + " " + TIME_ + "  " + STR_(S[2]) + "  " + W_(6)  # %%%%%  # 99410
