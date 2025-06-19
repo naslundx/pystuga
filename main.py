@@ -7,6 +7,57 @@ from datetime import datetime
 # === SETTINGS ===
 _DEBUG = True
 
+# === DATA ===
+DATA = [
+	"DIAMANT","DIAMA","DIAMA","diamanten",15,  # 90300
+	"GURKA","GURKA","ILLAL","gurkan",0,  # 90302
+	"SILVERTACKA","SILVE","TACKA","silvertackan",31,  # 90304
+	"HILLEBARD","HILLE","JUVEL","hillebarden",2,  # 90306
+	"DÖDSKALLE","DÖDSK","SKALL","dödskallen",0,  # 90308
+	"KLOCKA","VÄCKA","KLOCK","klockan",59,  # 90310
+	"GULDMYNT","GULD","MYNT","guldmynten",0,  # 90312
+	"TRILOGI","TRILO","SAGAN","trilogin",36,  # 90314
+	"KONTRAKT","KONTR","SKÄRT","kontraktet",0,  # 90316
+	"LAGERKRANS","LAGER","KRANS","lagerkransen",53,  # 90318
+	"PÄRLHALSBAND","PÄRL","HALSB","pärlhalsbandet",0,  # 90320
+	"FAUNSKO","FAUN","SKO","faunskon",0,  # 90322
+	"KOFOT","KOFOT","KOFOT","kofoten",0,  # 90330
+	"CYKELPUMP","CYKEL","PUMP","cykelpumpen",0,  # 90332
+	"STEGE","STEGE","STEGE","stegen",4,  # 90334
+	"BRÄNNVINSFLASKA","BRÄNN","BRÄNN","brännvinsflaskan",97,  # 90336
+	"VATTENFLASKA","VATTENF","VATTENF","vattenflaskan",0,  # 90338
+	"BOLL","BOLL","BOLL","bollen",8,  # 90340
+	"SPADE","SPADE","SPADE","spaden",61,  # 90342
+	"LIK","LIK","LIK","liket",0,  # 90344
+	"KATALOG","KATAL","TELEFONK","katalogen",0,  # 90346
+	"LAMPA","LAMPA","LAMPA","lampan",0,  # 90348
+	"TELEFON","TELEF","TELEF","telefonen",100,  # 90350
+	"NYCKLAR","NYCKL","NYCKE","nycklarna",54,  # 90352
+	"SAX","SAX","SAX","saxen",2,  # 90354
+	"SLÄGGA","SLÄGG","SLÄGG","släggan",2,  # 90356
+	"VAKT","VAKT","VAKT","vakten",58,  # 90357
+	"FÖRLÄNGNINGSSLADD","FÖRLÄ","SLADD","förlängningssladden",26,  # 90358
+	# Data för Fozzis berättelse  # 90400
+	"Dodge City","Boot Hill","en by i Montana","fantomengrottan",  # 90402
+	"fängelsechefen i Råå","Trondheim",  # 90404
+	"bröderna Dalton","Sven Olssons kvintett","bröderna Brothers",  # 90406
+	"Kimmo, den gamle fyllbulten,","Curt Nicolin","Jesse James",  # 90408
+	"fängelset","San Franciscos hem för tankspridda","sin limosin",  # 90410
+	"burarna i Bronx Zoo","en labyrint i Småland","riksdagshuset",  # 90412
+	"fritidsorganet GLAD OCH NAKEN","sheriffen","guldlasten",  # 90414
+	"några glada flickor","en aktie i Kuben","en illaluktande gurka",  # 90416
+	"fruktans demoner","ett bankrån","Butch Cassidys hustru",  # 90418
+	"jultomten","en hjärnskakningsepidemi","kvarterspolisen",  # 90420
+	"ett bakhåll","ett fel på Malmös TV 2-sändare","en taxi",  # 90422
+	"att toaletten ska bli ledig","att sheriffen ska göra något","Lucky Luke",  # 90424
+	"skjuta sönder stan","störa indianerna","varsla om lockout",  # 90426
+	"väcka guvernören","ta gisslan på Norges ambassad","dra sej tillbaka",  # 90428
+	"rädda","lätt berusade","måna om sitt utseende","allt färre",  # 90430
+	"svårflörtade","sömniga",  # 90432
+	"på ett helt annat ställe","för sent","i grevens tid",  # 90434
+	"en liten aning för tidigt","samtidigt","inte",  # 90436
+]
+
 # === TEMP ===
 def goto(instruction_number: int) -> None:
     """Make a jump to a specific BASIC instruction number"""
@@ -43,6 +94,13 @@ def goto(instruction_number: int) -> None:
     sys.exit(0)
 
 # === UTILS ===
+def INSTR(X1: str, X2: str) -> int:
+    """
+    Returns 0 if not found. Starting index is 1
+    See: https://www.c64-wiki.com/wiki/INSTR
+    """
+    return X1.find(X2) + 1
+
 
 def FNL_(X1_: str, X: int) -> str:  # 90800
     """Returns substring from left"""
@@ -54,23 +112,8 @@ def FNL_(X1_: str, X: int) -> str:  # 90800
 
 
 def FNC_(A_: str) -> str:  # 90700
-    return A_  # todo
-    X1_ = FNL_(A_, 130)
-    X2_ = ""
-    FNC_ = ""  # 90705
-    if len(X1_) > 20:
-        X2_ = FNM_(X1_, 21)
-    X1_ = FNL_(X1_, 20)  # 90710
-    # ?CHANGE X1_ TO X  # 90715
-    for X2 in range(1, X[0]):
-        if X[X2] > 96 and X[X2] < 126:
-            X[X2] -= 32  # 90720
-    # ? CHANGE X TO X1_  # 90750
-    FNC_ = FNC_ + X1_  # 90755
-    if X2_ != "":
-        X1_ = X2_
-        X2_ = ""
-        goto(90710)  # 90760
+    """Converts to upper case"""
+    return A_[:130].upper()  # 90760
 
 
 def FNA_(I1: int) -> str:  # 90600
@@ -135,19 +178,23 @@ def FNM_(X1_: str, X: int) -> str:  # 90840
 
 
 def FNF_(X):  # 90900
-    pass  #? todo - unclear
+    # TODO adapt to the DATA field
+    # https://www.c64-wiki.com/wiki/DATA
+    # https://www.c64-wiki.com/wiki/READ
+    return ""  #?
     # ? READ X1_ FOR I1=0 TO X(X)  # 90910
     # FNF_ = X1_  # 90920
     # ? READ X1_ FOR I1=X(X)+1 TO 5  # 90930
 
 
-def FNI_(X1_):  # 90950
+def FNI_(X1_) -> str:  # 90950
+    #? only partially fixed
     #if M2_ = 1 and W_ != CHR_(3):
     #    print()#2,W_ #&&&&&  # 90960
-    print(X1_)  # 90970
-    # ? if M3%==0%:
-    # ?     _ = input() # ""_W_
-    return W_  # 90980
+    # print(X1_)  # 90970
+    # ? if M3%==0%:  # 90980
+    W_ = input(X1_)
+    return W_
     # if END#3:
     # ?     M3%=0%
     goto(90980)  # &&&&&  # 90982
@@ -424,11 +471,11 @@ def call_method_12200():
         goto(30010)  # 12340
     if FNL_(C_, 4) == "VAKT" or (C_ == "" and (A[29] == Z or A[29] == 1)):
         goto(12360)  # 12341
-    if INSTR(1, C_, "BRÄNN") > 0:
+    if INSTR(C_, "BRÄNN") > 0:
         goto(12306)  # 12342
-    if INSTR(1, C_, "VATTE") > 0:
+    if INSTR(C_, "VATTE") > 0:
         goto(12380)  # 12344
-    if C_ == "FYLL" or INSTR(1, C_, "FLASKA") > 0:
+    if C_ == "FYLL" or INSTR(C_, "FLASKA") > 0:
         goto(12350)  # 12346
     call_method(11000)
     goto(12210)  # 12348
@@ -516,9 +563,9 @@ def call_method_12200():
     S[19] = 1
     X = 19
     goto(12999)  # 12454
-    if INSTR(1, A_, "GARDE") > 0 or (C_ == "" and S[23] == 0):
+    if INSTR(A_, "GARDE") > 0 or (C_ == "" and S[23] == 0):
         goto(12466)  # 12456
-    if INSTR(1, A_, "KASSA") == 0 and C_ != "":
+    if INSTR(A_, "KASSA") == 0 and C_ != "":
         goto(12083)  # 12458
     if Z == 31:
         print("Kassaskåpet är redan öppet.")
@@ -542,9 +589,9 @@ def call_method_12200():
     print("Ok.")
     S[23] = 0
     goto(12210)  # 12482
-    if INSTR(1, A_, "GARDE") > 0 or (C_ == "" and S[23] == 1):
+    if INSTR(A_, "GARDE") > 0 or (C_ == "" and S[23] == 1):
         goto(12494)  # 12486
-    if INSTR(1, A_, "KASSA") == 0 and C_ != "":
+    if INSTR(A_, "KASSA") == 0 and C_ != "":
         goto(12084)  # 12488
     print("Kassaskåpet stängs sakta.")  # 12490
     Z = 30
@@ -609,17 +656,17 @@ def call_method_12200():
     A1_ = FNI_("")
     A_ = A1_ + " " + A_(I, 1)  # 12601
     goto(12214)  # 12610
-    if INSTR(1, A_, "KATAL") > 0:
+    if INSTR(A_, "KATAL") > 0:
         goto(12670)  # 12650
-    if INSTR(1, A_, "KONTR") > 0:
+    if INSTR(A_, "KONTR") > 0:
         goto(12700)  # 12652
-    if INSTR(1, A_, "TRILO") > 0:
+    if INSTR(A_, "TRILO") > 0:
         goto(12710)  # 12654
-    if INSTR(1, A_, "LOGGF") > 0:
+    if INSTR(A_, "LOGGF") > 0:
         goto(12975)  # &&&&&  # 12655
-    if INSTR(1, A_, "KLOCK") > 0:
+    if INSTR(A_, "KLOCK") > 0:
         goto(12740)  # 12656
-    if INSTR(1, A_, "GRAV") > 0 or INSTR(1, A_, "STEN") > 0:
+    if INSTR(A_, "GRAV") > 0 or INSTR(A_, "STEN") > 0:
         goto(12750)  # 12657
     if A_ != "LÄS":
         call_method(11000)
@@ -709,17 +756,17 @@ def call_method_12200():
         goto(12210)  # 12806
     if C_ == "":
         C_ = FNI_("Ring vart:")  # 12808
-    if INSTR(1, C_, "000") > 0:
+    if INSTR(C_, "000") > 0:
         goto(27250)  # 12810
-    if INSTR(1, C_, "100") > 0:
+    if INSTR(C_, "100") > 0:
         goto(27600)  # 12812
-    if INSTR(1, C_, "307") > 0 or INSTR(1, C_, "323") > 0:
+    if INSTR(C_, "307") > 0 or INSTR(C_, "323") > 0:
         goto(27620)  # 12814
-    if INSTR(1, C_, "405") > 0:
+    if INSTR(C_, "405") > 0:
         goto(27200)  # 12816
-    if INSTR(1, C_, "481") > 0:
+    if INSTR(C_, "481") > 0:
         goto(27630)  # 12818
-    if INSTR(1, C_, "900") > 0:
+    if INSTR(C_, "900") > 0:
         goto(27400)  # 12821
     if FNC_(C_) == "HEM":
         goto(12835)  # 12822
@@ -737,7 +784,7 @@ def call_method_12200():
         goto(12210)  # 12840
     if I == 10 or I == 19:
         goto(7030)  # 12842
-    if INSTR(1, C_, "VATTE") > 0:
+    if INSTR(C_, "VATTE") > 0:
         goto(30010)  # 12844
     print("Gubben tar inte emot det.")
     goto(12210)  # 12846
@@ -792,15 +839,15 @@ def call_method_12200():
         print("Ok.")
     S[33] = 0  # 12906
     goto(12210)  # 12908
-    if INSTR(1, A_, "RÖVAR") > 0:
+    if INSTR(A_, "RÖVAR") > 0:
         print("Jag ser ingen RÖVARE här.")
     goto(12210)  # 12910
-    if INSTR(1, A_, "GUBBE") > 0:
+    if INSTR(A_, "GUBBE") > 0:
         goto(12920)  # 12912
-    if INSTR(1, A_, "EFTER") > 0:
+    if INSTR(A_, "EFTER") > 0:
         print("Jag ser ingen du kan följa efter.")
     goto(12210)  # 12914
-    if (INSTR(1, A_, "RÅD") > 0 or INSTR(1, A_, "THORVALD") > 0) and Z == 59:
+    if (INSTR(A_, "RÅD") > 0 or INSTR(A_, "THORVALD") > 0) and Z == 59:
         goto(12924)  # 12916
     goto(12088)  # 12918
     if S[30] == Z:
@@ -888,7 +935,7 @@ def call_method_12200():
         goto(13173)  # 13180
     if FNL_(A_, 3) != "LÅS":
         goto(13172)  # 13184
-    if INSTR(1, A_, "UPP") > 0:
+    if INSTR(A_, "UPP") > 0:
         goto(13200)  # 13186
     if S[7] == 0:
         print("Porten är redan låst.")
@@ -1537,7 +1584,7 @@ def call_method_15200():
     if X == 0 or X > 6:
         goto(21220)  # 21190
     goto([25000, 25130, 36000, 21230, 21230, 10020][X])  # 21200
-    if INSTR(1, A_, "KORKSKRUV") > 0:
+    if INSTR(A_, "KORKSKRUV") > 0:
         goto(21300)  # 21220
     call_method(11000)  # 21230
     print("Du är i ett dimmigt bergsrum.")  # 21240
@@ -1570,11 +1617,11 @@ def call_method_15200():
         goto([25050, 15300, 25100, 10020, 40000, 21100, 25060][X])  # 25012
     if X1 == 1:
         goto(25000)  # 25014
-    if INSTR(1, A_, "ÖPPNA") > 0:
+    if INSTR(A_, "ÖPPNA") > 0:
         goto(25045)  # 25016
-    if INSTR(1, A_, "KISTA") > 0:
+    if INSTR(A_, "KISTA") > 0:
         goto(25035)  # 25019
-    if INSTR(1, A_, "LÅS UPP KIST") > 0:
+    if INSTR(A_, "LÅS UPP KIST") > 0:
         print("Det finns inget lås.")
     goto(25025)  # 25020
     call_method(11000)  # 25023
@@ -1593,9 +1640,9 @@ def call_method_15200():
     if A_ == "ÖPPNA":
         A_ = FNI_("Öppna vad")
     A_ = FNC_(A_)  # 25045
-    if INSTR(1, A_, "KIST") > 0:
+    if INSTR(A_, "KIST") > 0:
         goto(25035)  # 25046
-    if INSTR(1, A_, "TAKLU") == 0 and INSTR(1, A_, "LUCK") == 0:
+    if INSTR(A_, "TAKLU") == 0 and INSTR(A_, "LUCK") == 0:
         goto(25023)  # 25047
     if A[17] != 1 and A[17] != Z:
         print("Takluckan sitter för högt!")
@@ -1699,11 +1746,11 @@ def call_method_15200():
     if S:  # 27270
         A1_ = input("TUU    T")
         goto(27270)
-    if INSTR(1, A_, "481") > 0:
+    if INSTR(A_, "481") > 0:
         goto(27280)  # 27272
-    if INSTR(1, A_, "999") > 0:
+    if INSTR(A_, "999") > 0:
         goto(27290)  # 27274
-    if INSTR(1, A_, "100") > 0 and J[100] == 0:
+    if INSTR(A_, "100") > 0 and J[100] == 0:
         print("Abonnemanget har upphört.<klick>")
     goto(12210)  # 27275
     print("Det är inget fel på den linjen.")  # 27276
@@ -1736,13 +1783,13 @@ def call_method_15200():
     print("Vad vill Du ha hjälp med")  # 27410
     A_ = FNC_(FNI_(" ?"))  # 27412
     print("Det går inte.")  # 27414
-    if INSTR(1, A_, "RÖVARE") > 0:
+    if INSTR(A_, "RÖVARE") > 0:
         goto(27428)  # 27416
-    if INSTR(1, A_, "TRAPPA") > 0:
+    if INSTR(A_, "TRAPPA") > 0:
         goto(27434)  # 27418
-    if INSTR(1, A_, "HISS") > 0:
+    if INSTR(A_, "HISS") > 0:
         goto(27440)  # 27420
-    if INSTR(1, A_, "BÅT") > 0:
+    if INSTR(A_, "BÅT") > 0:
         goto(27444)  # 27422
     print("<klick>")  # 27424
     goto(12210)  # 27426
@@ -1858,13 +1905,13 @@ def call_method_15200():
         goto(9950)  # 28092
     for I in range(1, A[0]):  # 28100
         if A_(I, 1) != "":
-            if INSTR(1, C_, A_(I, 2)) > 0 or INSTR(1, C_, A_(I, 3)) > 0:
+            if INSTR(C_, A_(I, 2)) > 0 or INSTR(C_, A_(I, 3)) > 0:
                 goto(28105)  # 28101
         continue  # 28102
     I = 0  # 28103
     if (A[29] != 1 and A[29] != Z) or S[6] > 1:
         goto(12840)  # 28105
-    if INSTR(1, C_, "GUBBE") > 0 or S[30] == Z:
+    if INSTR(C_, "GUBBE") > 0 or S[30] == Z:
         goto(12840)  # 28106
     if I > 0:
         goto(28110)  # 28107
@@ -2018,7 +2065,7 @@ def call_method_15200():
     A_ = FNI_("")  # 35050
     print()
     call_method_12000()  # 35052
-    if INSTR(1, A_, "SVAR") > 0:
+    if INSTR(A_, "SVAR") > 0:
         goto(35100)  # 35055
     if X1 == 1:
         goto(35015)  # 35065
@@ -2287,19 +2334,19 @@ def call_method_12000():
         X = 1  # 12010
     if FNL_(A_, 3) == "NER" or FNL_(A_, 3) == "NED" or A_ == "N":
         X = 2  # 12012
-    if INSTR(1, A_, "VÄNSTER") > 0 or A_ == "V":
+    if INSTR(A_, "VÄNSTER") > 0 or A_ == "V":
         X = 3  # 12014
-    if INSTR(1, A_, "HÖGER") > 0 or A_ == "H":
+    if INSTR(A_, "HÖGER") > 0 or A_ == "H":
         X = 4  # 12016
-    if INSTR(1, A_, "FRAM") > 0 or A_ == "F":
+    if INSTR(A_, "FRAM") > 0 or A_ == "F":
         X = 5  # 12018
-    if INSTR(1, A_, "BAKÅ") > 0 or A_ == "B":
+    if INSTR(A_, "BAKÅ") > 0 or A_ == "B":
         X = 6  # 12020
-    if INSTR(1, A_, "HJÄLP") > 0:
+    if INSTR(A_, "HJÄLP") > 0:
         X = 7  # 12025
     if X > 0 and X != 7 and S[21] > 0:
         print(FNS_("haltar", 5))  # 12027
-    E = INSTR(1, A_, " ")
+    E = INSTR(A_, " ")
     C_ = FNM_(A_, E)  # 12030
     if C_ == "":
         C_ = ""
@@ -2376,7 +2423,7 @@ def call_method_12000():
     call_method(91000)  # 12080
     if (
         A_ == "UT"
-        or INSTR(1, A_, " UT ") > 0
+        or INSTR(A_, " UT ") > 0
         or FNL_(A_, 3) == "UT "
         or FNR_(A_, 3) == " UT"
     ):
@@ -2395,10 +2442,10 @@ def call_method_12000():
         goto(12910)  # 12087
     if (
         A_ == "IN"
-        or INSTR(1, A_, " IN ") > 0
+        or INSTR(A_, " IN ") > 0
         or FNL_(A_, 3) == "IN "
         or FNR_(A_, 3) == " IN"
-        or INSTR(1, A_, "IGENOM") > 0
+        or INSTR(A_, "IGENOM") > 0
     ):
         goto(12400)  # 12088
     if FNL_(A_, 5) == "KASTA":
@@ -2868,9 +2915,9 @@ print("Kan du gå på vattnet?")  # 02216
 goto(2200)  # 02217
 print("Ett staket hindrar dej från att gå ditåt.")  # 02218
 goto(2200)  # 02219
-if INSTR(1, A_, "NER") > 0 or INSTR(1, A_, "NED") > 0 or A_ == "N":
+if INSTR(A_, "NER") > 0 or INSTR(A_, "NED") > 0 or A_ == "N":
     goto(2204)  # 02220
-if S[35] == 1 and (INSTR(1, A_, "BÅT") > 0 or A_ == "RO"):
+if S[35] == 1 and (INSTR(A_, "BÅT") > 0 or A_ == "RO"):
     goto(9390)  # 02222
 goto(2199)  # 02224
 Z = 51  # XXX STRANDHUSET XXXXX Z=51 XXXX  # 02241
@@ -2947,7 +2994,7 @@ C_ = FNI_("Ta vadå ?")
 A_ = C_ = FNC_(C_)  # 06302
 for I in range(1, A[0]):  # 06305
     if A_(I, 1) != "":
-        if INSTR(1, C_, A_(I, 2)) > 0 or INSTR(1, C_, A_(I, 3)) > 0:
+        if INSTR(C_, A_(I, 2)) > 0 or INSTR(C_, A_(I, 3)) > 0:
             goto(6400)  # 06306
 if FNL_(C_, 4) == "ALLT":
     goto(6500)  # 06309
@@ -3115,7 +3162,7 @@ if C_ == "":
 A_ = C_ = FNC_(C_)  # 07001
 for I in range(1, A[0]):  # 07003
     if A_(I, 1) != "":
-        if INSTR(1, C_, A_(I, 2)) > 0 or INSTR(1, C_, A_(I, 3)) > 0:
+        if INSTR(C_, A_(I, 2)) > 0 or INSTR(C_, A_(I, 3)) > 0:
             goto(7030)  # 07005
 if FNL_(C_, 4) == "ALLT":
     goto(7100)  # 07008
@@ -4040,7 +4087,7 @@ print("Du är på östra stranden. Åt norr är det skog.")  # 09362
 if S[35] == 0:
     print("Här ligger en roddbåt.")  # 09364
 call_method_15200()  # 09366
-if S[35] == 0 and (INSTR(1, A_, "BÅT") > 0 or A_ == "RO"):
+if S[35] == 0 and (INSTR(A_, "BÅT") > 0 or A_ == "RO"):
     goto(9390)  # 09368
 if X != 0:
     goto([20000, 9424, 20070, 9374, 20200, 9374, 9372, 9374, 20085, 2107][X])  # 09370
@@ -4095,7 +4142,7 @@ if X == 0:
 goto([9361, 9426, 20085, 20330, 20070, 9432, 9437, 9426, 9426, 2107][X])  # 09431
 print("Kan du gå på vattnet?")  # 09432
 goto(9424)  # 09433
-if INSTR(1, A_, "BADHYTT") > 0 or FNL_(A_, 5) == "ÖPPNA" or A_ == "IN":
+if INSTR(A_, "BADHYTT") > 0 or FNL_(A_, 5) == "ÖPPNA" or A_ == "IN":
     goto(9439)  # 09436
 call_method(11000)  # 09437
 goto(9424)  # 09438
@@ -4318,9 +4365,9 @@ goto(10052)  # 10046
 call_method(11000)  # 10050
 print("Du är i Skumgummirummet.")  # 10052
 goto(10030)  # 10054
-if INSTR(1, A_, "DIAMA") > 0:
+if INSTR(A_, "DIAMA") > 0:
     goto(10072)  # 10060
-if INSTR(1, A_, "TUNGA") > 0:
+if INSTR(A_, "TUNGA") > 0:
     goto(9075)  # 10062
 A_ = FNI_("Vad ska du skära med? Din vassa tunga ?")  # 10064
 A_ = FNC_(A_)  # 10065
@@ -4364,32 +4411,32 @@ if X1 > 0 or S1 > 0:  # 11001
     goto(11100)
 else:
     S[50] = S[50] - 1
-if INSTR(1, A_, "HJÄLP") > 0:  # 11002
+if INSTR(A_, "HJÄLP") > 0:  # 11002
     print("Du kan inte få någon hjälp här.")
     goto(11100)
 if A_ == "N" or A_ == "V":  # 11003
     print("Du kan inte gå ditåt.")
     goto(11100)
-if INSTR(1, "*NORR*SÖDER*VÄSTER*ÖSTER*NV*NÖ*NO*SV*SÖ*SO", "*" + A_) > 0:
+if INSTR("*NORR*SÖDER*VÄSTER*ÖSTER*NV*NÖ*NO*SV*SÖ*SO", "*" + A_) > 0:
     goto(11200)  # 11004
-if INSTR(1, "*NORDVÄST*NORDÖST*NORDOST*SYDVÄST*SYDÖST*SYDOST", "*" + A_) > 0:
+if INSTR("*NORDVÄST*NORDÖST*NORDOST*SYDVÄST*SYDÖST*SYDOST", "*" + A_) > 0:
     goto(11200)  # 11005
-if INSTR(1, "*UPPÅT*NEDÅT*NERÅT*VÄNSTER*HÖGER*FRAMÅT*BAKÅT", "*" + A_) > 0:
+if INSTR("*UPPÅT*NEDÅT*NERÅT*VÄNSTER*HÖGER*FRAMÅT*BAKÅT", "*" + A_) > 0:
     goto(11220)  # 11006
-if INSTR(1, A_, "SESAM") == 0 and INSTR(1, A_, "KORKSKRUV") == 0:
+if INSTR(A_, "SESAM") == 0 and INSTR(A_, "KORKSKRUV") == 0:
     goto(11011)  # 11007
 print("Ingenting händer.")  # 11008
 goto(11100)  # 11009
-if INSTR(1, A_, "STÄNG") > 0:
+if INSTR(A_, "STÄNG") > 0:
     print("Det finns inget du kan stänga här!")
 goto(11100)  # 11011
-if INSTR(1, A_, "KROSS") > 0:
+if INSTR(A_, "KROSS") > 0:
     print("Det finns inget du kan krossa här!")
 goto(11100)  # 11013
-if INSTR(1, A_, "SKÄR") > 0:
+if INSTR(A_, "SKÄR") > 0:
     print("Det finns inget du kan skära här!")
     goto(11100)  # 11014
-if A_ == "SE" or INSTR(1, A_, "TITTA") > 0:
+if A_ == "SE" or INSTR(A_, "TITTA") > 0:
     pass  # ? return  # 11015
 if FNL_(A_, 5) == "HOPPA" and X == 1:
     print("Du kommer ingenstans uppåt.")
@@ -4478,54 +4525,6 @@ for I in range(1, 12):  # 90202
 #? for I in range(15, A[0]):  # 90208
 #?     pass  # ? READ A_(I,1),A_(I,2),A_(I,3),A_(I,4),A[I]  # 90210
 goto(20000)  # 90214
-# ? DATA "DIAMANT","DIAMA","DIAMA","diamanten",15  # 90300
-# ? DATA "GURKA","GURKA","ILLAL","gurkan",0  # 90302
-# ? DATA "SILVERTACKA","SILVE","TACKA","silvertackan",31  # 90304
-# ? DATA "HILLEBARD","HILLE","JUVEL","hillebarden",2  # 90306
-# ? DATA "DÖDSKALLE","DÖDSK","SKALL","dödskallen",0  # 90308
-# ? DATA "KLOCKA","VÄCKA","KLOCK","klockan",59  # 90310
-# ? DATA "GULDMYNT","GULD","MYNT","guldmynten",0  # 90312
-# ? DATA "TRILOGI","TRILO","SAGAN","trilogin",36  # 90314
-# ? DATA "KONTRAKT","KONTR","SKÄRT","kontraktet",0  # 90316
-# ? DATA "LAGERKRANS","LAGER","KRANS","lagerkransen",53  # 90318
-# ? DATA "PÄRLHALSBAND","PÄRL","HALSB","pärlhalsbandet",0  # 90320
-# ? DATA "FAUNSKO","FAUN","SKO","faunskon",0  # 90322
-# ? DATA "KOFOT","KOFOT","KOFOT","kofoten",0  # 90330
-# ? DATA "CYKELPUMP","CYKEL","PUMP","cykelpumpen",0  # 90332
-# ? DATA "STEGE","STEGE","STEGE","stegen",4  # 90334
-# ? DATA "BRÄNNVINSFLASKA","BRÄNN","BRÄNN","brännvinsflaskan",97  # 90336
-# ? DATA "VATTENFLASKA","VATTENF","VATTENF","vattenflaskan",0  # 90338
-# ? DATA "BOLL","BOLL","BOLL","bollen",8  # 90340
-# ? DATA "SPADE","SPADE","SPADE","spaden",61  # 90342
-# ? DATA "LIK","LIK","LIK","liket",0  # 90344
-# ? DATA "KATALOG","KATAL","TELEFONK","katalogen",0  # 90346
-# ? DATA "LAMPA","LAMPA","LAMPA","lampan",0  # 90348
-# ? DATA "TELEFON","TELEF","TELEF","telefonen",100  # 90350
-# ? DATA "NYCKLAR","NYCKL","NYCKE","nycklarna",54  # 90352
-# ? DATA "SAX","SAX","SAX","saxen",2  # 90354
-# ? DATA "SLÄGGA","SLÄGG","SLÄGG","släggan",2  # 90356
-# ? DATA "VAKT","VAKT","VAKT","vakten",58  # 90357
-# ? DATA "FÖRLÄNGNINGSSLADD","FÖRLÄ","SLADD","förlängningssladden",26  # 90358
-# Data för Fozzis berättelse  # 90400
-# ? DATA "Dodge City","Boot Hill","en by i Montana","fantomengrottan"  # 90402
-# ? DATA "fängelsechefen i Råå","Trondheim"  # 90404
-# ? DATA "bröderna Dalton","Sven Olssons kvintett","bröderna Brothers"  # 90406
-# ? DATA "Kimmo, den gamle fyllbulten,","Curt Nicolin","Jesse James"  # 90408
-# ? DATA "fängelset","San Franciscos hem för tankspridda","sin limosin"  # 90410
-# ? DATA "burarna i Bronx Zoo","en labyrint i Småland","riksdagshuset"  # 90412
-# ? DATA "fritidsorganet GLAD OCH NAKEN","sheriffen","guldlasten"  # 90414
-# ? DATA "några glada flickor","en aktie i Kuben","en illaluktande gurka"  # 90416
-# ? DATA "fruktans demoner","ett bankrån","Butch Cassidys hustru"  # 90418
-# ? DATA "jultomten","en hjärnskakningsepidemi","kvarterspolisen"  # 90420
-# ? DATA "ett bakhåll","ett fel på Malmös TV 2-sändare","en taxi"  # 90422
-# ? DATA "att toaletten ska bli ledig","att sheriffen ska göra något","Lucky Luke"  # 90424
-# ? DATA "skjuta sönder stan","störa indianerna","varsla om lockout"  # 90426
-# ? DATA "väcka guvernören","ta gisslan på Norges ambassad","dra sej tillbaka"  # 90428
-# ? DATA "rädda","lätt berusade","måna om sitt utseende","allt färre"  # 90430
-# ? DATA "svårflörtade","sömniga"  # 90432
-# ? DATA "på ett helt annat ställe","för sent","i grevens tid"  # 90434
-# ? DATA "en liten aning för tidigt","samtidigt","inte"  # 90436
-
 
 if ERR != 27:
     goto(97004)  # 97000
