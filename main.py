@@ -104,10 +104,6 @@ def INSTR(X1: str, X2: str) -> int:
 
 def FNL_(X1_: str, X: int) -> str:  # 90800
     """Returns substring from left"""
-    if X <= 0:
-        return ""
-    if X > len(X1_):
-        return f"{X1_}"
     return X1_[:X]  # 90810
 
 
@@ -177,14 +173,9 @@ def FNM_(X1_: str, X: int) -> str:  # 90840
     return X1_[X-1:len(X1_) - X]  # 90850
 
 
-def FNF_(X):  # 90900
-    # TODO adapt to the DATA field
-    # https://www.c64-wiki.com/wiki/DATA
-    # https://www.c64-wiki.com/wiki/READ
-    return ""  #?
-    # ? READ X1_ FOR I1=0 TO X(X)  # 90910
-    # FNF_ = X1_  # 90920
-    # ? READ X1_ FOR I1=X(X)+1 TO 5  # 90930
+def FNF_(xi):  # 90900
+    #? maybe incorrect, if data pointer must persist
+    return DATA[X[xi] + 1]
 
 
 def FNI_(X1_) -> str:  # 90950
@@ -3550,16 +3541,15 @@ print("Fozzi tar dej med in i hans loge och säjer :")  # 08442
 print(" - Om du säjer ett niosiffrigt tal där ingen siffra är över fem")  # 08443
 print("så ska jag, Fozzi den rolige, hjälpa Dej med en berättelse.")  # 08444
 A_ = FNI_("Svara SPRINGA eller ett niosiffrigt tal :")  # 08445
-if FNC_(FNL_(A_, 5)) == "SPRIN":
-    goto(8842)  # 08446
-if len(A_) != 9:
-    goto(8445)  # 08447
+if FNC_(FNL_(A_, 5)) == "SPRIN":  # 08446
+    goto(8842)
+if len(A_) != 9:  # 08447
+    goto(8445)
 
-for i in range(1, 9):
-    if ASCII(FNM_(A_, i)) < 48 or ASCII(FNM_(A_, i)) > 54:
-        goto(8445)  # 08448
-for i in range(1, 9):
-    X[i] = VAL(MID_(A_, I, 1))  # 08450
+if not all(ch.isdigit() for ch in A_):  # 08448
+    goto(8445)
+for i in range(0, 9):  # 08450
+    X[i] = ord(A_[i])
 print()  # 08460
 print("Fozzi skriver upp en berättelse på en lapp som han ger dej.")  # 08463
 print("Du går tillbaka till scenen och berättar.")  # 08465
