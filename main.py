@@ -453,7 +453,7 @@ def call_method_12200():
     print("Klunk...klunk...klunk......HICK    !")  # 12312
     for I in range(1, 9):  # 12314
         S = time.sleep(3)  # 12316
-        print(TAB(int(random.random() * 66) + 1) + "HICK    !")  # 12318
+        print(TAB(random.randint(0, 6) + 1) + "HICK    !")  # 12318
     print()
     S[31] = 1  # 12322
     print("Nu hoppas jag att vi har nyktrat till så pass att vi kan fortsätta!")  # 12324
@@ -1215,18 +1215,18 @@ def call_method_15200():
     goto(17020)  # 17120
     print("Jag är ledsen, men det tar lång tid att komma fram här.")  # 17150
     print(FNS_("tar mej fram", 15))  # 17155
-    D = int(random.random() * 6) + 1  # 17160
+    D = random.randint(0, 6) + 1  # 17160
     if D == 1:
         goto(20040)  # 17165
     if D == 3:
         goto(15050)  # 17172
     goto(17182)  # 17175
-    D = int(random.random() * 4) + 1  # 17180
+    D = random.randint(1, 5)  # 17180
     if D == 4:
         goto(40000)  # 17181
     print("Du har vindlat runt i en trång gång och kommer tillbaka.")  # 17182
     goto(17010)  # 17183
-    D = int(random.random() * 6) + 1  # 17185
+    D = random.randint(1, 7)  # 17185
     if D < 3:
         print("Du har en rutten tomat i handen, men den försvinner.")  # 17186
     if D == 5:
@@ -1237,7 +1237,7 @@ def call_method_15200():
     if D == 6:
         goto(14100)  # 17191
     goto(17182)  # 17192
-    D = int(random.random() * 10) + 1  # 17195
+    D = random.randint(1, 10)  # 17195
     if D > 5 and S[2] > 50:
         goto(18000)  # 17197
     if D == 2:
@@ -1250,7 +1250,7 @@ def call_method_15200():
     if S[40] == 4:
         goto(1500)  # 17230
     goto(9190)  # 17235
-    D = int(random.random() * 10)  # 17240
+    D = random.randint(0, 9)  # 17240
     if D == 2:
         goto(15370)  # 17245
     goto(17182)  # 17250
@@ -1265,7 +1265,7 @@ def call_method_15200():
     S[31] = 0  # 18095
     print("din brännvinsflaska.")  # 18100
     print("Fozzi mumlar något om en faun och knuffar ut dej ur rummet.")  # 18105
-    goto([40000, 1960, 1960][int(random.random() * 3) + 1])  # 18110
+    goto([40000, 1960, 1960][random.randint(0, 2)])  # 18110
     print("Du trampas på tårna av en faun, så du springer ut igen.")  # 18120
     goto(18110)  # 18125
     if S[2] > 50: # 20000
@@ -1372,7 +1372,7 @@ def call_method_15200():
     print("Du går över en äng och ett högt berg.")  # 20095
     print()  # 20096
     print("Plötsligt hittar du ")  # 20097
-    D = int(random.random() * 5)  # 20098
+    D = random.randint(0, 5)  # 20098
     if D < 4:
         goto(20102)  # 20099
     print("en stig som du följer tillbaka.")  # 20100
@@ -1960,10 +1960,10 @@ def call_method_15200():
     if Z == 80:
         goto(6069)  # 29050
     B = 0  # 29055
-    if int(random.random() * 4) == 3:
+    if random.randint(0, 3) == 3: # 29060
         S[3] = 0
-    S[41] = 1
-    goto(6069)  # 29060
+        S[41] = 1
+        goto(6069)
     for I in range(1, 14):  # 29065
         if A[I] == 1:
             A[I] = 80
@@ -1988,9 +1988,9 @@ def call_method_15200():
     # XXX GUBBE XXXX  # 30000
     if S[30] == 96 or S[49] == 1:
         pass  # ? return  # 30001
-    S[30] = int(random.random() * 92) + 9
+    S[30] = random.randint(91, 100)  # 30002
     S[49] = 0
-    X1 = 2  # 30002
+    X1 = 2
     if S[30] == Z or S[30] == 51 or S[30] == 60:
         goto(30002)  # 30004
     print("Gubben reser sej, muttrar någonting om att man aldrig")  # 30006
@@ -2034,8 +2034,8 @@ def call_method_15200():
         print("Jag ser ingen GUBBE här.")
     goto(12210)  # 30050
     print("Gubben ser din hotande blick och smiter iväg.")  # 30052
-    S[30] = int(random.random() * 92) + 9
-    S[49] = 0  # 30054
+    S[30] = random.randint(91, 100)  # 30054
+    S[49] = 0
     if S[30] == Z or S[30] == 51 or S[30] == 60:
         goto(30054)  # 30056
     goto(12210)  # 30058
@@ -2249,14 +2249,14 @@ def call_method_6000():  #? semi-done
         print("Förlängningssladden räcker precis hit.")
     if S[3] > 0:  # 06050
         goto(29000)
-    if int(random.random() * 20) != 1 or S[50] < 50:  # 06060
+    if random.randint(0, 19) != 1 or S[50] < 50:  # 06060
         goto(6069)
     for i in range(1, 14):  # 06062
         if A[i] == 1:
             S[3] = S[3] + 1
     if S[3] > 0:  # 06064
-        S[4] = int(random.random() * 6) + int(S[3] / 2 + 0.5)
-    if int(random.random() * 30) != 1:  # 06069
+        S[4] = random.randint(0, 5) + int(S[3] / 2 + 0.5)
+    if random.randint(0, 30) != 1:  # 06069
         goto(6100)
     if S[48] > 0:  # 06070
         print("En glasmästare springer förbi dej.")
@@ -2268,7 +2268,7 @@ def call_method_6000():  #? semi-done
     if S[41] == 1:
         print("En hissreparatör går förbi dej.")  # 06076
         S[41] = 0
-        S[40] = int(random.random() * 9) + 1
+        S[40] = random.randint(0, 9) + 1
     if S[50] - S[21] > 25 and S[21] > 0:  # 06098
         goto(6130)
     if A[29] != Z:  # 06100
@@ -2476,7 +2476,7 @@ def call_method_12000():
     print("Du sparkar bollen så hårt att den försvinner.")  # 12123
     if A[20] == 1:
         S[1] = S[1] - 1  # 12124
-    A[20] = int(random.random() * 92) + 9  # 12125
+    A[20] = random.randint(0, 2) + 9  # 12125
     goto(12210)  # 12126
     if INSTR(A_, "VATTEN") > 0 or INSTR(A_, "VATTNET") > 0:
         goto(12890)  # 12130
@@ -2785,7 +2785,7 @@ if A[12] == 1:
     goto(2083)  # 02080
 print("FUSKARE! Du har ingen faunsko!")  # 02081
 goto(2087)  # 02082
-D = int(random.random() * 10) + 1  # 02083
+D = random.randint(0, 0) + 1  # 02083
 if D > 7:
     goto(2094)  # 02084
 print("Grattis    ! Du vann en massa guldmynt.")  # 02085
@@ -2842,7 +2842,7 @@ goto([2126, 2123, 2126, 2126, 35000, 2115][X])  # 02134
 print("Du har kommit upp ur en brunn. Här finns en stuga.")  # 02135
 Z = 99
 goto(2129)  # 02136
-D = int(random.random() * 4) + 1  # 02138
+D = random.randint(0, 4) + 1  # 02138
 if D == 2:
     goto(2109)  # 02139
 if D > 2:
@@ -2850,7 +2850,7 @@ if D > 2:
 else:
     print("Du dras ner. Nu är du")  # 02140
 goto(9450)  # 02143
-D = int(random.random() * 5) + 1  # 02145
+D = random.randint(0, 5) + 1  # 02145
 if D < 4:
     goto(2115)  # 02146
 print("En hord fauner kommer framrusande. Nnnnnu är du en våt fläck.")  # 02147
@@ -2872,7 +2872,7 @@ print("Du kliver i en men upptäcker att den bara var en synvilla.")  # 02162
 goto(2104)  # 02163
 if S[32] != 0:
     goto(2168)  # 02164
-D = int(random.random() * 5) + 1  # 02165
+D = random.randint(0, 5) + 1  # 02165
 if A[19] == 1 and S[32] == 0:
     goto(2173)  # 02166
 S[46] = S[46] + 1  # 02167
@@ -2881,7 +2881,7 @@ goto(2150)  # 02169
 S[32] = 1  # 02173
 print("Du råkar hälla ut vattnet på en faun som springer ylande iväg.")  # 02174
 goto(2150)  # 02175
-D = int(random.random() * 10) + 1  # 02180
+D = random.randint(0, 0) + 1  # 02180
 if D > 8:
     goto(2183)  # 02181
 goto(14100)  # 02182
@@ -3661,7 +3661,7 @@ if A[30] == 1:
     print("en förlängningssladd till telefonen")  # 08656
 goto(12210)  # 08663
 print("Du kan inte få nå #n hjälp så som du ser ut!")
-D = int(random.random() * 5) + 1  # 08700
+D = random.randint(0, 5) + 1  # 08700
 goto([8000, 8300, 8095, 8035, 8420][D])  # 08701
 S[43] = 1  # XXX MUPPET SHOW XXX  # 08800
 if W_(6) != "":
@@ -3768,7 +3768,7 @@ if FNL_(A_, 5) == "HÖGER":
     goto(8950)  # 08917
 goto(8915)  # 08918
 print("Du går fram mot Wayne & Wanda för att sluta fred.")  # 08920
-D = int(random.random() * 20) + 1  # 08921
+D = random.randint(0, 0) + 1  # 08921
 if D == 1:
     goto(8904)  # 08922
 print("Du bestämmer att du inte ska sjunga mer så W&W")  # 08923
@@ -3804,7 +3804,7 @@ if FNL_(A_, 5) == "SPRIN":
 goto(8953)  # 08957
 print("Du springer rätt in i ett monster som slukar grönsaker!")  # 08960
 print("Han tar upp dej och kastar dej högt upp i luften.")  # 08961
-D = int(random.random() * 5) + 1  # 08963
+D = random.randint(0, 5) + 1  # 08963
 goto([8327, 1500, 14100, 9145, 16000][D])
 goto([8327, 1500, 14100, 9145, 16000][D])  # 08964
 print("Du är inne i en tortyrkammare. Dörren gick i lås bakom dej!")  # 08970
@@ -4022,8 +4022,8 @@ print("Du är i hissen. Här finns tio knappar. Dom nio första är numrerade") 
 print("1-9. På den sista står det NÖDSTOPP.")  # 09306
 call_method_6000()  # 09307
 print("Vilken knapp trycker du på ? ")  # 09308
-E = int(random.random() * 9) + 1
-E1 = int(random.random() * 15) + 5  # 09309
+E = random.randint(0, 9) + 1
+E1 = random.randint(0, 5) + 5  # 09309
 if S[40] == 0:  # ? or M3%==1%:
     goto(9315)
 else:
@@ -4088,7 +4088,7 @@ goto(9361)  # 09374
 Z = 78  # XXXX I BÅTEN XXXXX Z=78 XXXXX  # 09390
 print("Du sitter i båten, mitt i sjön.")  # 09391
 call_method_15200()
-S[35] = int(random.random() * 2)  # 09392
+S[35] = random.randint(0, 2)  # 09392
 if X == 1:
     goto(9410)  # 09393
 if X == 2:
@@ -4166,7 +4166,7 @@ if S[46] == 1:
     goto(9479)  # 09471
 if S[46] == 6:
     goto(9483)  # 09472
-D = int(random.random() * 10) + 1  # 09473
+D = random.randint(0, 0) + 1  # 09473
 if D > 3:
     goto(9479)  # 09474
 print("POFF!!! Ett grönt gasmoln omger dej!")  # 09475
@@ -4278,7 +4278,7 @@ if A[28] != 1:
 print("Du krossar glaset. Saxen ramlar ur och asken försvinner i ett moln.")  # 09570
 A[27] = 57
 goto(9557)  # 09571
-D = int(random.random() * 10)  # 09575
+D = random.randint(0, 0)  # 09575
 if D < 4:
     print("Gången mynnar ut i ett hus.")
 goto(2241)  # 09576
@@ -4434,7 +4434,7 @@ goto(11100)  # 11017
 if FNL_(A_, 5) == "HOPPA":
     print("Det finns inget hål att hoppa ner genom.")
 goto(11100)  # 11018
-D = int(random.random() * 5) + 1  # 11080
+D = random.randint(0, 5) + 1  # 11080
 if D == 1:
     print("Va ??")  # 11081
 if D == 2:
