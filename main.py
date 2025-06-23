@@ -1063,9 +1063,9 @@ def call_method_12200():
 def call_method_15200():
     if _DEBUG:
         time.sleep(0.5)
-        print('call_method_12200')
+        print('call_method_15200')
     # XXXXX ALLMÄN GOSUBRUTIT XXXXX  # 15200
-    call_method(6000)
+    call_method_6000()
     print()  # 15202
     if S1 < 2:
         A_ = FNI_("")
@@ -1269,12 +1269,12 @@ def call_method_15200():
     print("Du trampas på tårna av en faun, så du springer ut igen.")  # 18120
     goto(18110)  # 18125
     if S[2] > 50: # 20000
-        goto(20005)  # XXX BRYGGAN XXXXX
-    print("Du står på en brygga någonstans i Småland. Bakom din solvärmda rygg")  # 20001
-    print("åker man vattenskidor. En kyrkklocka (som du inte ser) slår tolv.")  # 20002
-    print("Du ser ett hus rakt fram.")  # 20003
-    goto(20006)  # 20004
-    print("Du är på bryggan och ser ett hus rakt fram.")  # 20005
+        print("Du är på bryggan och ser ett hus rakt fram.")  # 20005
+    else:
+        print("Du står på en brygga någonstans i Småland. Bakom din solvärmda rygg")  # 20001
+        print("åker man vattenskidor. En kyrkklocka (som du inte ser) slår tolv.")  # 20002
+        print("Du ser ett hus rakt fram.")  # 20003
+    pass # 20004
     Z = 70  # 20006
     call_method_15200()  # 20007
     if S1 > 0:  # 20008
@@ -1546,7 +1546,7 @@ def call_method_15200():
     print("Det springer rätt ut i sjön och simmar bort.")  # 20358
     print()
     goto(20033)  # 20360
-    call_method(6000)  # SABBAR 6000,_ = input() #TAR, KOLLAR BÅDE 8600 OCH 12000  # 20500
+    call_method_6000()  # SABBAR 6000,_ = input() #TAR, KOLLAR BÅDE 8600 OCH 12000  # 20500
     print()  # 20502
     if S1 < 2:
         A_ = FNI_("")
@@ -2049,7 +2049,7 @@ def call_method_15200():
     print("Du är i stugan.")  # 35030
     if S[27] == 8:
         S[27] = 4  # 35035
-    call_method(6000)  # 35040
+    call_method_6000()  # 35040
     if S[27] == 1 and J[100] == 1 and A[25] == 100:
         print("Telefonen ringer.")  # 35045
     print()
@@ -2166,7 +2166,7 @@ def call_method_6000():  #? semi-done
     # ```` RUMSBESKRIVNING ```````````` TA ````````` SLÄPP ````````````  # 06000
     if S[2] == 335 and random.random() > 0.5:  # 06002
         print("Plötsligt kommer Thorvald fram och säjer:")
-        goto(99160)
+        call_method_99000(skip_name=True)
     if Z == 70 and A1 == 1:  # 06003
         print("På marken ligger en enorm rubin.")
     if A[1] == Z:  # 06005
@@ -2279,9 +2279,9 @@ def call_method_6000():  #? semi-done
         print("Här står en vakt.")
     if S[6] == 1:  # 06106
         print("En full vakt raglar omkring här.")
-    if S[6] == 2:
+    if S[6] == 2:  # 06108
         print("Det finns blodfläckar på golvet.")
-        return  # 06108
+        return
     if S[6] == 3:  # 06110
         print("En vakt sover här.")
     if A[15] == 2:  # 06112
@@ -2291,8 +2291,8 @@ def call_method_6000():  #? semi-done
     if A[25] == 2:  # 06116
         print("Han bär på en telefon.")
     if A[4] == 2:  # 06118
-        print("Han bär på en juvelprydd hillebard.")
-    return  # 06119
+        print("Han bär på en juvelprydd hillebard.")  # 06119
+        return
     if A[29] != 1:  # 06120
         return
     if S[50] - S[51] < 31 and S[51] > 0:  # 06122
@@ -4020,7 +4020,7 @@ if S[22] / 2 == int(S[22] / 2):
 goto(9307)  # 09304
 print("Du är i hissen. Här finns tio knappar. Dom nio första är numrerade")  # 09305
 print("1-9. På den sista står det NÖDSTOPP.")  # 09306
-call_method(6000)  # 09307
+call_method_6000()  # 09307
 print("Vilken knapp trycker du på ? ")  # 09308
 E = int(random.random() * 9) + 1
 E1 = int(random.random() * 15) + 5  # 09309
@@ -4506,10 +4506,10 @@ print("Då behövs lite hjälp och instruktioner!")  # 90100
 call_method_91000()  # 90110
 print("LYCKA TILL!")  # 90150
 print()  # 90153
-A[0] = 30
+A[0] = 30  # 90200
 S[0] = 53
 S[24] = 6
-J[0] = 100  # 90200
+J[0] = 100
 for I in range(1, 12):  # 90202
     pass  # ? READ A_(I,1),A_(I,2),A_(I,3),A_(I,4),A[I]  # 90204
 #? for I in range(15, A[0]):  # 90208
@@ -4530,134 +4530,59 @@ else:
 S2 = 0  # 97002
 goto(12999)  # 97003
 print("? Fel på rad", ERL, ". Felkod:", ERR)  # 97004
+
 # ? RESUME  # 97006
 # %%%%% Raderna 97010 - 98034 behövs bara på Oden och Nadja  # 97010
-print("? Kan inte öppna STUGA.TXT<11,155>. Ge kommandot")  # %%%%%  )# 97011
-print("  PATH/ADD:DSKD: innan du kör STUGA nästa gång")  # %%%%%  )# 97012
-print("  så slipper du förhoppningsvis denna utskrift.")  # %%%%%  )# 97014
-goto(99996) #%%%%%  # 97016
-A1_ = input("S, A, A_, W_ eller Z; index; S eller L:")  #?  # "_A1_,A1%,A2_ #%%%%%  # 98000
-if ERROR:  # 98001
-    goto(98020)  # %%%%%
-if A2_ == "S":
-    A3_ = input("Nytt värde:")  #%%%%%  # 98002
-# ?if A1_=="S":
-# ?     print( S(A1%) )
-# ?if A2_="S":
-# ?     S(A1%)=VAL(A3_) #%%%%%  )# 98003
-# ? if A1_=="A":
-# ?     print( A(A1%) )
-# ?IF A2_="S":
-# ?     A(A1%)=VAL(A3_) #%%%%%  )# 98004
-# ?if A1_=="W_":
-# ?     print( W_(A1%) )
-# ?if A2_="S":
-# ?     W_(A1%)=A3_ #%%%%%  )# 98006
-if A1_ == "Z":
-    print(Z)
-if A2_ == "S":
-    Z = VAL(A3_)
-goto(80360)  # %%%%%   # 98007
-if A1_ == "A_":  # 98008
-    goto(98030)  # %%%%%
-if ERROR:  # 98009
-    goto(97000)  # %%%%%
-A_ = FNI_("")
-goto(12214)  # %%%%%  # 98010
-print("Felaktigt index!")  # %%%%%  )# 98020
-goto(98009) #%%%%%  # 98022
-A2_ = input("1, 2, 3 eller 4:")  #%%%%%  # 98030
-# ?print( A_(A1%,A2%) )
-# ?if A2_=="S":
-# ?     A_(A1%,A2%)=A3_ #%%%%%  )# 98032
-goto(98009)  # %%%%%  # 98034
-# XXX SLUT XXXX  # 99000
-# ?if M2%==1%:
-# ?     print()#2,W_
-# ?CLOSE 2
-# ?M2%=0% #&&&&& LOGGA  # 99002
-# ?if M3%==1%:
-# ?     CLOSE 3
-# ?M3%=0% #&&&&&  # 99003
-if W_[6] == "":
-    W_[6] = FNI_("Vad heter du ?")  # %%%%% Kan tas bort  # 99004
-print("Du fick" + S[2] + "poäng!")  # 99090
-if S[2] < 50:
-    I = 50
-    print("Du kan klassas som en klantig nybörjare.")
-    goto(99200)  # 99100
-if S[2] < 55:
-    I = 55
-    print("Du är en ren amatör inom stugforskningen.")
-    goto(99200)  # 99104
-if S[2] < 65:
-    I = 65
-    print("Du är en duktig nybörjare inom stugforskningen.")
-    goto(99200)  # 99110
-if S[2] < 90:
-    I = 90
-    print("Du är en erfaren stugforskare.")
-    goto(99200)  # 99112
-if S[2] < 120:
-    I = 120
-    print("Du kan kalla dej en stugfogde.")
-    goto(99200)  # 99114
-if S[2] < 150:
-    I = 150
-    print("Du är en erfaren stugfogde.")
-    goto(99200)  # 99120
-if S[2] < 200:
-    I = 200
-    print("Du är en väldigt erfaren stugfogde.")
-    goto(99200)  # 99130
-if S[2] < 250:
-    I = 250
-    print("Du är biträdande expert på hus i Småland.")
-    goto(99200)  # 99140
-if S[2] < 300:
-    I = 300
-    print("Du är expert på hus i Småland.")
-    goto(99300)  # 99145
-if S[2] < 335:
-    I = 335
-    print("Du är föreslagen som medlem i stugrådet.")
-    goto(99200)  # 99150
+#! 97010 - 98034 borttagna
 
-print("    GRATTIS !!")  # 99160
-print("Du är nu invald i stugrådet.")  # 99170
-goto(99300)  # 99174
-print("För att komma upp i nästa klass behöver Du")  # 99200
-print((I - S[2]) + "poäng till.")  # 99210
-# Eventuell loggning av resultat, 99302 - 99500 kan tas bort  # 99300
-A_ = input("Vill du ge några synpunkter på STUGA?")  # +A_
-A_ = FNC_(A_)  # %%%%%  # 99302
-if FNL_(A_, 1) == "J":
-    goto(99350)  # %%%%%  # 99305
-if FNL_(A_, 1) == "N":
-    I = 0
-goto(99400)  # %%%%%  # 99310
-print("Svara JA eller NEJ!")  # %%%%%  )# 99315
-goto(99300)  # %%%%%  # 99320
-print("Skriv nu! Avsluta med en extra radframmatning.")  # %%%%%  )# 99350
-for I in range(1, 50):  # %%%%%):# 99355
-    W_ = input()  #%%%%%  # 99360
-    if W_[I] == "":  # 99365
-        I = I - 1
-        goto(99395)  # %%%%%
-    if len(W_[I]) > 80:
-        W_[I] = FNL_(W_[I], 80)  # %%%%%  # 99370
+def call_method_99000(skip_name=False):
+    # XXX SLUT XXXX  # 99000
+    #! 99001 - 99003 borttagna
+    if skip_name:
+        if W_[6] == "":  # 99004
+            W_[6] = FNI_("Vad heter du ?")  # %%%%% Kan tas bort
+        print(f"Du fick {S[2]} poäng!")  # 99090
+    if S[2] < 50:
+        I = 50
+        print("Du kan klassas som en klantig nybörjare.")
+    elif S[2] < 55:
+        I = 55
+        print("Du är en ren amatör inom stugforskningen.")
+    elif S[2] < 65:
+        I = 65
+        print("Du är en duktig nybörjare inom stugforskningen.")
+    elif S[2] < 90:
+        I = 90
+        print("Du är en erfaren stugforskare.")
+    elif S[2] < 120:
+        I = 120
+        print("Du kan kalla dej en stugfogde.")
+    elif S[2] < 150:
+        I = 150
+        print("Du är en erfaren stugfogde.")
+    elif S[2] < 200:
+        I = 200
+        print("Du är en väldigt erfaren stugfogde.")
+    elif S[2] < 250:
+        I = 250
+        print("Du är biträdande expert på hus i Småland.")
+    elif S[2] < 300:
+        I = 300
+        print("Du är expert på hus i Småland.")
+        #! här fanns en bugg
+    elif S[2] < 335:
+        I = 335
+        print("Du är föreslagen som medlem i stugrådet.")
+    else:
+        I = S[2]  #! eget påhitt
+        print("    GRATTIS !!")  # 99160
+        print("Du är nu invald i stugrådet.")  # 99170
 
-print("Tack!")  # %%%%%  )# 99395
-if ERROR:
-    goto(97010)  # %%%%%  # 99400
-# OPEN "STUGA.TXT[11,155]_80" AS FILE :1 #%%%%%  # 99402
-# SET :1,LOF(:1)+1 #%%%%%  # 99405
-A_ = DATE_ + " " + TIME_ + "  " + STR_(S[2]) + "  " + W_(6)  # %%%%%  # 99410
-# RITE :1,A_ #%%%%%  # 99415
-# WRITE :1,W_(J) FOR J=1 TO I #%%%%%  # 99420
-# fclose #%%%%%  # 99500
-print()
-print("Thorvald hälsar:   - Välkommen tillbaka!")  # 99990
-print()  # 99996
-#            NU ÄR PROGRAMMET NÄSTAN SLUT            KKKKKOLOLOLOLLKHH  # 99998
-# END  # 99999
+    if I - S[2] > 0:
+        print(f"För att komma upp i nästa klass behöver Du {I - S[2]} poäng till.")  # 99200
+
+    # Eventuell loggning av resultat, 99302 - 99500 kan tas bort  # 99300
+    #! 99300 - 99500 borttagna
+    print("\nThorvald hälsar:   - Välkommen tillbaka!\n")  # 99990 # 99996
+    #            NU ÄR PROGRAMMET NÄSTAN SLUT            KKKKKOLOLOLOLLKHH  # 99998
+    # END  # 99999
