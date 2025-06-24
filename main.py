@@ -352,6 +352,69 @@ def call_method_80200():
 
 # == MAIN ==
 
+def call_method_11000():
+    # VIOLS SUBFELMEDDELANDERUTIN 3  # 11000
+    if X1 > 0 or S1 > 0:  # 11001
+        goto(11100)
+    else:
+        S[50] = S[50] - 1
+    if INSTR(A_, "HJÄLP") > 0:  # 11002
+        print("Du kan inte få någon hjälp här.")
+        goto(11100)
+    if A_ == "N" or A_ == "V":  # 11003
+        print("Du kan inte gå ditåt.")
+        goto(11100)
+    if INSTR("*NORR*SÖDER*VÄSTER*ÖSTER*NV*NÖ*NO*SV*SÖ*SO", "*" + A_) > 0:
+        goto(11200)  # 11004
+    if INSTR("*NORDVÄST*NORDÖST*NORDOST*SYDVÄST*SYDÖST*SYDOST", "*" + A_) > 0:
+        goto(11200)  # 11005
+    if INSTR("*UPPÅT*NEDÅT*NERÅT*VÄNSTER*HÖGER*FRAMÅT*BAKÅT", "*" + A_) > 0:
+        goto(11220)  # 11006
+    if INSTR(A_, "SESAM") == 0 and INSTR(A_, "KORKSKRUV") == 0:
+        goto(11011)  # 11007
+    print("Ingenting händer.")  # 11008
+    goto(11100)  # 11009
+    if INSTR(A_, "STÄNG") > 0:
+        print("Det finns inget du kan stänga här!")
+    goto(11100)  # 11011
+    if INSTR(A_, "KROSS") > 0:
+        print("Det finns inget du kan krossa här!")
+    goto(11100)  # 11013
+    if INSTR(A_, "SKÄR") > 0:
+        print("Det finns inget du kan skära här!")
+        goto(11100)  # 11014
+    if A_ == "SE" or INSTR(A_, "TITTA") > 0:
+        pass  # ? return  # 11015
+    if FNL_(A_, 5) == "HOPPA" and X == 1:  # 11017
+        print("Du kommer ingenstans uppåt.")
+        goto(11100)
+    if FNL_(A_, 5) == "HOPPA":  # 11018
+        print("Det finns inget hål att hoppa ner genom.")
+        goto(11100)
+    D = random.randint(1, 5)  # 11080
+    if D == 1:
+        print("Va ??")  # 11081
+    if D == 2:
+        print("Jag förstår inte.")  # 11082
+    if D == 3:
+        print("Det förstår jag inte alls.")  # 11083
+    if D == 4:
+        print("Det vet jag inte vad det betyder.")  # 11084
+    if D == 5:
+        print("Uttryck Dej klarare.")  # 11085
+    print()  # 11099
+    # ? return  # 11100
+    if S[36] == 0:  # 11200
+        print("Inomhus ska du ange riktningar, inte väderstreck.")
+    if S[36] != 0:  # 11202
+        print("Du kan inte gå ditåt.")
+    goto(11100)  # 11205
+    if S[36] == 1:  # 11220
+        print("Utomhus ska du ange väderstreck, inte riktningar.")
+    if S[36] != 1:  # 11225
+        print("Du kan inte gå ditåt.")
+    goto(11100)  # 11230
+
 def call_method_12200():
     if _DEBUG:
         time.sleep(0.5)
@@ -421,7 +484,7 @@ def call_method_12200():
     if FNL_(C_, 5) == "VATTE":
         goto(12282)  # 12272
     if C_ != "":
-        call_method(11000)
+        call_method_11000()
     goto(12210)  # 12274
     C_ = FNI_("Drick vad ?")  # 12276
     C_ = FNC_(C_)
@@ -468,7 +531,7 @@ def call_method_12200():
         goto(12380)  # 12344
     if C_ == "FYLL" or INSTR(C_, "FLASKA") > 0:
         goto(12350)  # 12346
-    call_method(11000)
+    call_method_11000()
     goto(12210)  # 12348
     if A[18] == 1 or A[19] == 1:
         C_ = FNI_("Fyll med vad ?")
@@ -660,7 +723,7 @@ def call_method_12200():
     if INSTR(A_, "GRAV") > 0 or INSTR(A_, "STEN") > 0:
         goto(12750)  # 12657
     if A_ != "LÄS":
-        call_method(11000)
+        call_method_11000()
     goto(12210)  # 12658
     A_ = FNI_("Vad vill du läsa ?")
     A_ = FNC_(A_)
@@ -904,14 +967,14 @@ def call_method_12200():
         goto(13000)  # 13005
     if X > 4:
         goto([13173, 7570, 13010][X - 4])  # 13006
-    call_method(11000)  # 13008
+    call_method_11000()  # 13008
     goto(13000)  # 13009
     if S[6] > 0 or A[29] != Z:
         goto(13008)  # 13010
     print("Det finns en sak som kan påverka vakten.")  # 13012
     S[2] = S[2] - 10  # 13014
     goto(13000)  # 13016
-    call_method(11000)  # 13172
+    call_method_11000()  # 13172
     Z = 62  # XXX PORTEN XXX  # 13173
     print("Du står vid en jättelik, utsmyckad port.")  # 13175
     call_method_12200()  # 13176
@@ -981,7 +1044,7 @@ def call_method_12200():
     call_method_12200()  # 13241
     if X != 0:
         goto([13247, 13245, 13245, 13245, 13245, 13173, 13245][X])  # 13244
-    call_method(11000)  # 13245
+    call_method_11000()  # 13245
     goto(13235)  # 13246
     if S[15] == 0 and A[1] != 1:
         goto(40000)  # 13247
@@ -1001,7 +1064,7 @@ def call_method_12200():
         goto(14000)  # 14018
     if X != 0:
         goto([9490, 1909, 14030, 14100, 8000, 9490, 14022][X])  # 14020
-    call_method(11000)  # 14022
+    call_method_11000()  # 14022
     print("Du är i en mörk gång.")
     goto(14012)  # 14024
     print("Du går genom en grind som går i lås bakom dej.")  # 14030
@@ -1009,7 +1072,7 @@ def call_method_12200():
     print("Grinden öppnar sej och du går in.")  # 14034
     print("BA    NG!!  Grinden stängs bakom dej!")  # 14036
     goto(14000)  # 14038
-    call_method(11000)  # 14099
+    call_method_11000()  # 14099
     Z = 65  # XXXXX PANNRUMMET XXXXX  # 14100
     print("Du är i Pannrummet, en trång gång går snett uppåt-framåt")  # 14106
     print("och en går åt vänster. Till höger fortsätter Pannrummet.")  # 14107
@@ -1021,7 +1084,7 @@ def call_method_12200():
         goto(14000)  # 14139
     print("Nå #nting du bär på tar emot. Skriv INVENT och släpp det.")  # 14142
     goto(14100)  # 14145
-    call_method(11000)  # 14998
+    call_method_11000()  # 14998
     Z = 10
     S[10] = S[10] + 1  # XXXXX KÄLLAREN XXXXX  # 15000
     if S[10] < 3 or S[10] > 7:
@@ -1047,7 +1110,7 @@ def call_method_12200():
     call_method_12200()  # 15060
     if X != 0:
         goto([15076, 15064, 15386, 14100, 1500, 15078, 15064][X])  # 15062
-    call_method(11000)  # 15064
+    call_method_11000()  # 15064
     if S[9] > 8:
         S[9] = 4  # 15066
     print("Du är i ett stort rum som heter ÅP-rummet.")  # 15068
@@ -1072,7 +1135,7 @@ def call_method_15200():
     print()  # 15203
     call_method(8600)  # 15204
     # ? return  # 15205
-    call_method(11000)  # 15299
+    call_method_11000()  # 15299
     Z = 11  # XXX Hilbertrummet XXX  # 15300
     print(
         "Du är i Hilbertrummet, ett rum med fyra dörrar och hål i taket och golvet."
@@ -1087,7 +1150,7 @@ def call_method_15200():
         goto(25000)  # 15312
     print("Du når inte upp till hålet.")
     goto(15300)  # 15314
-    call_method(11000)  # 15349
+    call_method_11000()  # 15349
     Z = 46  # XXX TRAPPRUM 1 XXXXXZ=46 XXX  # 15350
     print("Du är i ett rum med två rulltrappor.")  # 15351
     print("Det finns en dörr bakom dej.")  # 15352
@@ -1104,7 +1167,7 @@ def call_method_15200():
         goto(15386)
     else:
         goto(15349)  # 15359
-    call_method(11000)  # 15369
+    call_method_11000()  # 15369
     Z = 47  # XXX TRAPPRUM 2 XXX  # 15370
     print("Du är i ett rum med en nedåtgående rulltrappa och en dörr åt höger.")  # 15372
     if S[18] == 1:
@@ -1122,7 +1185,7 @@ def call_method_15200():
     print("gubbe springer fram och spärrar av den.")  # 15383
     S[18] = 1
     goto(15370)  # 15384
-    call_method(11000)  # 15385
+    call_method_11000()  # 15385
     Z = 48  # XXX TRAPPRUM 3 XXXXX  # 15386
     print("Du är i ett rum med en uppåtgående rulltrappa och en dörr framåt.")  # 15388
     if S[17] == 1:
@@ -1145,7 +1208,7 @@ def call_method_15200():
     call_method_12200()  # 15429
     if X > 0:
         goto([16000, 9145, 15431, 15431, 15431, 15434, 15438][X])  # 15430
-    call_method(11000)  # 15431
+    call_method_11000()  # 15431
     print("Du är i trapprummet.")
     Z = 90  # 15432
     goto(15429)  # 15433
@@ -1176,7 +1239,7 @@ def call_method_15200():
         goto(16020)  # 16057
     if X > 0:
         goto([15000, 15432, 9000, 15300, 17000, 16500, 16060][X])  # 16058
-    call_method(11000)  # 16060
+    call_method_11000()  # 16060
     print("Du är på vinden.")
     goto(16055)  # 16065
     Z = 13
@@ -1193,7 +1256,7 @@ def call_method_15200():
         goto(16515)  # 16535
     if X > 0:
         goto([16000, 16545, 15000, 15300, 16545, 16545, 16545][X])  # 16540
-    call_method(11000)  # 16545
+    call_method_11000()  # 16545
     print("Du är i Tomma rummet.")
     goto(16530)  # 16550
     Z = 14
@@ -1206,7 +1269,7 @@ def call_method_15200():
         goto([17150, 17180, 17185, 17195, 17220, 17240][X])  # 17025
     if X1 == 1:
         goto(17100)  # 17031
-    call_method(11000)  # 17032
+    call_method_11000()  # 17032
     goto(17010)  # 17033
     print("Du är i ett underligt rum. Dimslöjor sveper kring dina fötter")  # 17100
     print("och du ser gångar i alla riktningar.")  # 17101
@@ -1285,7 +1348,7 @@ def call_method_15200():
         goto(
             [20030, 9361, 20200, 20013, 20020, 20013, 20011, 20013, 20070, 2107][X]
         )
-    call_method(11000)  # 20011
+    call_method_11000()  # 20011
     goto(20005)  # 20012
     print("Du kan väl inte gå på vattnet?")  # 20013
     goto(20005)  # 20014
@@ -1294,7 +1357,7 @@ def call_method_15200():
     call_method_15200()  # 20024
     if X != 0:
         goto([20040, 20200, 20028, 20030, 20028, 20055, 20026, 20005, 20028][X])  # 20025
-    call_method(11000)  # 20026
+    call_method_11000()  # 20026
     goto(20020)  # 20027
     print("Ett staket hindrar dej att gå ditåt.")  # 20028
     goto(20020)  # 20029
@@ -1309,7 +1372,7 @@ def call_method_15200():
         goto(
             [20055, 20000, 20020, 20037, 20040, 20037, 20035, 20037, 20200, 2107][X]
         )  # 20034
-    call_method(11000)  # 20035
+    call_method_11000()  # 20035
     goto(20030)  # 20036
     print("Du kan väl inte gå på vattnet?")  # 20037
     goto(20030)  # 20038
@@ -1331,11 +1394,11 @@ def call_method_15200():
         goto(14034)  # 20046
     if X != 0:
         goto([20050, 20020, 20050, 20055, 20050, 20050, 20048, 20030, 20050][X])  # 20047
-    call_method(11000)  # 20048
+    call_method_11000()  # 20048
     goto(20040)  # 20049
     print("Ett staket hindrar dej att gå ditåt!")  # 20050
     goto(20040)  # 20051
-    call_method(11000)  # 20054
+    call_method_11000()  # 20054
     Z = 74  # XXX STRAND 2 XXXX Z=74 XXXXX  # 20055
     print("Du är på stranden nordväst om sjön.")  # 20056
     call_method_15200()  # 20057
@@ -1355,7 +1418,7 @@ def call_method_15200():
     call_method_15200()  # 20073
     if X != 0:
         goto([20200, 20085, 20077, 9361, 20077, 20000, 20075, 9424, 20077][X])  # 20074
-    call_method(11000)  # 20075
+    call_method_11000()  # 20075
     goto(20070)  # 20076
     print("Ett staket hindrar dej att gå ditåt.")  # 20077
     goto(20070)  # 20078
@@ -1364,7 +1427,7 @@ def call_method_15200():
     call_method_15200()  # 20088
     if X != 0:
         goto([20070, 20092, 20094, 9424, 20092, 9361, 20090, 20105, 20092][X])  # 20089
-    call_method(11000)  # 20090
+    call_method_11000()  # 20090
     goto(20085)  # 20091
     print("Ett elektriskt stängsel hindrar dej att gå ditåt.")  # 20092
     goto(20085)  # 20093
@@ -1404,7 +1467,7 @@ def call_method_15200():
     if X == 1:
         S[3] = 1
     goto(20107)  # 20149
-    call_method(11000)
+    call_method_11000()
     goto(20143)  # 20151
     Z = 79  # XXXXX SKOG 4 XXXXX Z=79 XXX  # 20155
     print("Du är i skogen, väster om sjön.")  # 20156
@@ -1413,14 +1476,14 @@ def call_method_15200():
         goto(
             [20197, 2115, 20055, 20165, 20197, 20197, 20162, 20180, 20195, 2107][X]
         )  # 20161
-    call_method(11000)  # 20162
+    call_method_11000()  # 20162
     goto(20155)  # 20163
     Z = 82  # XXXXX SKOG 5 XXXXX Z=82 XXX  # 20165
     print("Du är i skogen, sydväst om sjön.")  # 20166
     call_method_15200()  # 20168
     if X != 0:
         goto([20178, 20180, 20155, 20240, 20178, 20178, 20173, 20255, 20176][X])  # 20172
-    call_method(11000)  # 20173
+    call_method_11000()  # 20173
     goto(20165)  # 20174
     print("Kan du gå på vattnet?")  # 20176
     goto(20165)  # 20177
@@ -1433,7 +1496,7 @@ def call_method_15200():
         goto(
             [20165, 2075, 20191, 20255, 20155, 20240, 20188, 2200, 20191, 2107][X]
         )  # 20187
-    call_method(11000)  # 20188
+    call_method_11000()  # 20188
     goto(20180)  # 20189
     print("Kan du gå på vattnet?")  # 20191
     goto(20180)  # 20192
@@ -1441,7 +1504,7 @@ def call_method_15200():
     goto(20155)  # 20196
     print("Ett staket hindrar dej att gå ditåt.")  # 20197
     goto(20155)  # 20198
-    call_method(11000)  # 20199
+    call_method_11000()  # 20199
     Z = 81  # XXXXX FRAMFÖR HUSET XXXX Z=81 XXX  # 20200
     print("Du står framför husets väldiga port.")  # 20202
     call_method_15200()  # 20204
@@ -1473,7 +1536,7 @@ def call_method_15200():
     call_method_15200()  # 20243
     if X != 0:
         goto([20251, 20255, 20165, 20251, 20251, 20251, 20248, 20251, 20180][X])  # 20247
-    call_method(11000)  # 20248
+    call_method_11000()  # 20248
     goto(20240)  # 20249
     print("Ett staket hindrar dej att gå ditåt.")  # 20251
     goto(20240)  # 20252
@@ -1482,7 +1545,7 @@ def call_method_15200():
     call_method_15200()  # 20258
     if X != 0:
         goto([20240, 2200, 20180, 20266, 20165, 20266, 20263, 20266, 2075][X])  # 20262
-    call_method(11000)  # 20263
+    call_method_11000()  # 20263
     goto(20255)  # 20264
     print("Ett staket hindrar dej att gå ditåt.")  # 20266
     goto(20256)  # 20267
@@ -1493,7 +1556,7 @@ def call_method_15200():
         goto(
             [2066, 20285, 20281, 20300, 20281, 2200, 20278, 20315, 20330, 2107][X]
         )  # 20277
-    call_method(11000)  # 20278
+    call_method_11000()  # 20278
     goto(20270)  # 20279
     print("Kan du gå på vattnet?")  # 20281
     goto(20270)  # 20282
@@ -1502,7 +1565,7 @@ def call_method_15200():
     call_method_15200()  # 20288
     if X != 0:
         goto([20270, 20297, 20330, 20315, 20295, 20300, 20293, 20297, 20297][X])  # 20292
-    call_method(11000)  # 20293
+    call_method_11000()  # 20293
     goto(20285)  # 20294
     print("Kan du gå på vattnet?")  # 20295
     goto(20285)  # 20296
@@ -1513,7 +1576,7 @@ def call_method_15200():
     call_method_15200()  # 20303
     if X != 0:
         goto([2200, 20315, 20270, 20312, 2066, 20312, 20309, 20312, 20285][X])  # 20307
-    call_method(11000)  # 20309
+    call_method_11000()  # 20309
     goto(20300)  # 20310
     print("Ett staket hindrar dej att gå ditåt.")  # 20312
     goto(20300)  # 20313
@@ -1522,7 +1585,7 @@ def call_method_15200():
     call_method_15200()  # 20318
     if X != 0:
         goto([20300, 20327, 20285, 20327, 20270, 20327, 20324, 20327, 20327][X])  # 20322
-    call_method(11000)  # 20324
+    call_method_11000()  # 20324
     goto(20315)  # 20325
     print("Ett staket hindrar dej att gå ditåt.")  # 20327
     goto(20315)  # 20328
@@ -1533,7 +1596,7 @@ def call_method_15200():
         goto(
             [20340, 20342, 9424, 20285, 20340, 20270, 20338, 20342, 20342, 2107][X]
         )  # 20336
-    call_method(11000)  # 20338
+    call_method_11000()  # 20338
     goto(20330)  # 20339
     print("Kan du gå på vattnet?")  # 20340
     goto(20330)  # 20341
@@ -1577,7 +1640,7 @@ def call_method_15200():
     goto([25000, 25130, 36000, 21230, 21230, 10020][X])  # 21200
     if INSTR(A_, "KORKSKRUV") > 0:
         goto(21300)  # 21220
-    call_method(11000)  # 21230
+    call_method_11000()  # 21230
     print("Du är i ett dimmigt bergsrum.")  # 21240
     goto(21160)  # 21250
     if S[23] == 1:
@@ -1590,7 +1653,7 @@ def call_method_15200():
         goto(21500)  # 21380
     if S[23] == 0 or Z == 30:
         goto(21240)  # 21390
-    call_method(11000)  # 21410
+    call_method_11000()  # 21410
     print("Kassaskåpet är öppet.")  # 21415
     goto(21350)  # 21420
     print("Kassaskåpet stängs.")  # 21500
@@ -1615,7 +1678,7 @@ def call_method_15200():
     if INSTR(A_, "LÅS UPP KIST") > 0:
         print("Det finns inget lås.")
     goto(25025)  # 25020
-    call_method(11000)  # 25023
+    call_method_11000()  # 25023
     print("Du är i Thorvalds rum.")
     goto(25010)  # 25025
     if A[15] != 1:
@@ -1687,7 +1750,7 @@ def call_method_15200():
         goto(10020)  # 25212
     if X1 == 1:
         goto(25130)  # 25215
-    call_method(11000)  # 25220
+    call_method_11000()  # 25220
     goto(25130)  # 25230
     # XXX TELEVERKET - subrutin för jackmontering XXX  # 27050
     D = int(random.random() * S[37]) + 1  # 27060
@@ -2062,7 +2125,7 @@ def call_method_15200():
         goto(35015)  # 35065
     if X > 3 and X < 7:
         goto(35085)  # 35070
-    call_method(11000)  # 35075
+    call_method_11000()  # 35075
     goto(35030)  # 35080
     if S[27] == 1:
         S[27] = 0  # 35085
@@ -2089,7 +2152,7 @@ def call_method_15200():
     if X == 0 or X > 6:
         goto(36035)  # 36025
     goto([36035, 36050, 36035, 36035, 21100, 2150][X])  # 36030
-    call_method(11000)  # 36035
+    call_method_11000()  # 36035
     print("Du är på kyrkogården.")  # 36040
     goto(36015)  # 36045
     Z = 63  # XXXXX GRAVEN XXXXX  # 36050
@@ -2105,7 +2168,7 @@ def call_method_15200():
         goto(36090)  # 36075
     if X == 1:
         goto(36000)  # 36080
-    call_method(11000)  # 36085
+    call_method_11000()  # 36085
     print("Du är i en grav.")  # 36090
     goto(36070)  # 36095
     Z = 17  # XXXXX OSVALDS RUM XXXXX  # 40000
@@ -2140,7 +2203,7 @@ def call_method_15200():
     print("Trappan rasar ihop.")
     S[15] = 1
     goto(40015)  # 40150
-    call_method(11000)  # 40200
+    call_method_11000()  # 40200
     goto(40020)  # 40210
     # XXX GARDEROBEN XXXXX Z=4 XXXX  # 41000
     print("Du är i en mörk garderob.")  # 41005
@@ -2154,7 +2217,7 @@ def call_method_15200():
         goto(40000)  # 41090
     if X == 3:
         goto(9020)  # 41100
-    call_method(11000)  # 41105
+    call_method_11000()  # 41105
     print("Du är i garderoben.")  # 41110
     goto(41040)  # 41120
 
@@ -2268,7 +2331,7 @@ def call_method_6000():  #? semi-done
     if S[41] == 1:
         print("En hissreparatör går förbi dej.")  # 06076
         S[41] = 0
-        S[40] = random.randint(0, 9) + 1
+        S[40] = random.randint(1, 10)
     if S[50] - S[21] > 25 and S[21] > 0:  # 06098
         goto(6130)
     if A[29] != Z:  # 06100
@@ -2476,7 +2539,7 @@ def call_method_12000():
     print("Du sparkar bollen så hårt att den försvinner.")  # 12123
     if A[20] == 1:
         S[1] = S[1] - 1  # 12124
-    A[20] = random.randint(0, 2) + 9  # 12125
+    A[20] = random.randint(9, 99)  # 12125
     goto(12210)  # 12126
     if INSTR(A_, "VATTEN") > 0 or INSTR(A_, "VATTNET") > 0:
         goto(12890)  # 12130
@@ -2623,7 +2686,7 @@ def sub_730():
     print("Plötsligt omges du av ett gult moln!")  # 00734
 
 
-call_method(11000)  # 01499
+call_method_11000()  # 01499
 Z = 53
 S[25] = S[25] + 1  # XXXXX VIGGOS ATELJE XXXXX  # 01500
 if S[25] > 2 and S[25] < 8:
@@ -2654,7 +2717,7 @@ print("Dörren har gått i baklås så du kommer inte ut åt det hållet!")  # 0
 if A[26] == 1 or A[26] == Z:
     print("Dina nycklar passar inte i nyckelhålet.")  # 01544
 goto(1500)  # 01548
-call_method(11000)  # 01908
+call_method_11000()  # 01908
 print("Du är i en stor svängande labyrint.")  # 01909
 Z = 34  # 01910
 call_method_12200()  # 01911
@@ -2662,14 +2725,14 @@ if X == 0 or X > 6:
     goto(1908)  # 01913
 
 goto([1970, 1919, 1939, 8095, 1950, 1929][X])  # 01914
-call_method(11000)  # 01918
+call_method_11000()  # 01918
 print("Du är i en svängig stor labyrint.")  # 01919
 Z = 92
 call_method_12200()  # XX KIVIS LABYRintRUM 3 XXXX Z=92 XXX  # 01921
 if X == 0 or X > 6:
     goto(1918)  # 01922
 goto([1929, 1944, 1960, 1950, 1909, 8300][X])  # 01923
-call_method(11000)  # 01928
+call_method_11000()  # 01928
 print("Du är i en svängande stor labyrint.")  # 01929
 Z = 89
 call_method_12200()  # XX KIVIS LABYRintRUM 2 XXXX Z=89 XXX  # 01931
@@ -2692,16 +2755,16 @@ call_method_12200()  # XX KIVIS LABYRintRUM 4 XXXX Z=93 XXX  # 01952
 if X == 0 or X > 6:
     goto(1956)  # 01953
 goto([8000, 1929, 1960, 1970, 1944, 1919][X])  # 01954
-call_method(11000)
+call_method_11000()
 goto(1950)  # 01956
-call_method(11000)  # 01959
+call_method_11000()  # 01959
 print("Du är i en stor labyrint som också är svängig.")  # 01960
 Z = 94
 call_method_12200()  # XX KIVIS LABYRintRUM 5 XXXX Z=94 XXX  # 01962
 if X == 0 or X > 6:
     goto(1959)  # 01963
 goto([1919, 8035, 1970, 1980, 1929, 1950][X])  # 01964
-call_method(11000)  # 01969
+call_method_11000()  # 01969
 print("Du är i en svängig labyrint som också är stor.")  # 01970
 Z = 95
 call_method_12200()  # XX KIVIS LABYRintRUM 6 XXXX Z=95 XXX  # 01972
@@ -2727,7 +2790,7 @@ if FNL_(A_, 1) == "J" or FNL_(A_, 1) == "j":
     goto(2019)  # 02014
 print("Ok.")  # 02015
 goto(14100)  # 02016
-call_method(11000)  # 02018
+call_method_11000()  # 02018
 Z = 69  # XXXX GROTTRUM 1 XXXXX Z=69 XXX  # 02019
 print("Du är i en grotta som sträcker sej utom synhåll åt vänster och höger.")  # 02020
 if S[42] > 0:
@@ -2748,9 +2811,9 @@ call_method(20500)  # 02035
 if X == 0 or X > 6:
     goto(2038)  # 02036
 goto([2019, 2066, 2115, 2150, 2066, 2019][X])  # 02037
-call_method(11000)  # 02038
+call_method_11000()  # 02038
 goto(2034)  # 02039
-call_method(11000)  # 02043
+call_method_11000()  # 02043
 Z = 19  # XXXX GROTTRUM 2 XXX Z=19 XXX  # 02044
 if A[12] != 0:
     goto(2051)  # 02045
@@ -2762,7 +2825,7 @@ call_method(20500)  # 02052
 if X == 0:
     goto(2043)  # 02054
 goto([2043, 2043, 2075, 2150, 2145, 2019, 2043][X])  # 02056
-call_method(11000)  # 02065
+call_method_11000()  # 02065
 Z = 33  # XXXXX GROTTRUM 3 XXXXX  # 02066
 print("Du är på stranden till en underjordisk sjö.")  # 02067
 call_method(20500)  # 02068
@@ -2772,7 +2835,7 @@ if X != 0:
     goto([2101, 2104, 2075, 20270, 2107, 2033, 2065][X])
 else:
     goto(2065)  # 02073
-call_method(11000)  # 02074
+call_method_11000()  # 02074
 Z = 25  # XXX GROTTRUM 5 XXX Z=25 XXX  # 02075
 print(
     "Du är på stranden till en underjordisk sjö bredvid en enorm spelautomat."
@@ -2785,7 +2848,7 @@ if A[12] == 1:
     goto(2083)  # 02080
 print("FUSKARE! Du har ingen faunsko!")  # 02081
 goto(2087)  # 02082
-D = random.randint(0, 0) + 1  # 02083
+D = random.randint(1, 10)  # 02083
 if D > 7:
     goto(2094)  # 02084
 print("Grattis    ! Du vann en massa guldmynt.")  # 02085
@@ -2828,11 +2891,11 @@ print("man en stuga.")  # 02117
 call_method(20500)  # 02118
 if X != 0:
     goto([2120, 2120, 20155, 2120, 2127, 2033, 2120][X])  # 02119
-call_method(11000)  # 02120
+call_method_11000()  # 02120
 goto(2115)  # 02121
 print("Du hoppar ner i brunnen och ramlar tillslut ner på marken.")  # 02123
 goto(14000)  # 02124
-call_method(11000)  # 02126
+call_method_11000()  # 02126
 Z = 99  # XXXXX GROTTRUM 7 XXXX Z=99 XXXX  # 02127
 print("Du står utanför stugan vid en brunn.")  # 02128
 call_method(20500)  # 02129
@@ -2842,7 +2905,7 @@ goto([2126, 2123, 2126, 2126, 35000, 2115][X])  # 02134
 print("Du har kommit upp ur en brunn. Här finns en stuga.")  # 02135
 Z = 99
 goto(2129)  # 02136
-D = random.randint(0, 4) + 1  # 02138
+D = random.randint(1, 4)  # 02138
 if D == 2:
     goto(2109)  # 02139
 if D > 2:
@@ -2850,12 +2913,12 @@ if D > 2:
 else:
     print("Du dras ner. Nu är du")  # 02140
 goto(9450)  # 02143
-D = random.randint(0, 5) + 1  # 02145
+D = random.randint(1, 5)  # 02145
 if D < 4:
     goto(2115)  # 02146
 print("En hord fauner kommer framrusande. Nnnnnu är du en våt fläck.")  # 02147
 goto(9461)  # 02148
-call_method(11000)  # 02149
+call_method_11000()  # 02149
 Z = 98  # XXX GROTTRUM 8 XXXX Z=98 XXXXX  # 02150
 print("Du har en halvrutten tomat i handen men den försvinner.")  # 02151
 call_method(20500)  # 02152
@@ -2872,7 +2935,7 @@ print("Du kliver i en men upptäcker att den bara var en synvilla.")  # 02162
 goto(2104)  # 02163
 if S[32] != 0:
     goto(2168)  # 02164
-D = random.randint(0, 5) + 1  # 02165
+D = random.randint(1, 5)  # 02165
 if A[19] == 1 and S[32] == 0:
     goto(2173)  # 02166
 S[46] = S[46] + 1  # 02167
@@ -2881,14 +2944,14 @@ goto(2150)  # 02169
 S[32] = 1  # 02173
 print("Du råkar hälla ut vattnet på en faun som springer ylande iväg.")  # 02174
 goto(2150)  # 02175
-D = random.randint(0, 0) + 1  # 02180
+D = random.randint(1, 10) + 1  # 02180
 if D > 8:
     goto(2183)  # 02181
 goto(14100)  # 02182
 print("Plötsligt känner du en trasa framför näsan och du säckar ihop.")  # 02183
 print("När Du vaknar märker Du att ")  # 02184
 goto(2168)  # 02185
-call_method(11000)  # 02199
+call_method_11000()  # 02199
 Z = 50  # XXX SÖDRA STRANDEN XXXXX Z=50 XXXX  # 02200
 print("Du är på den södra sidan av sjön. Här finns ett hus.")  # 02201
 if S[35] != 0:
@@ -2952,7 +3015,7 @@ if X == 6:
 if X1 == 1:
     goto(2242)
 else:
-    call_method(11000)  # 02276
+    call_method_11000()  # 02276
 print("Du är vid apparaten och kan bara gå bakåt.")  # 02277
 goto(2272)  # 02278
 A[I] = 5
@@ -3267,9 +3330,9 @@ if X == 6:
 if X == 2 and A[1] != 1:
     goto(7570)
 else:
-    call_method(11000)
+    call_method_11000()
 goto(7556)  # 07568
-call_method(11000)  # 07569
+call_method_11000()  # 07569
 print("Du är i ett litet rum utan fönster.")  # 07570
 Z = 32
 call_method_12200()  # 07573
@@ -3332,7 +3395,7 @@ if X == 0 or X > 6:
 if S[45] == 3:
     goto([8095, 8071, 1919, 8365, 8330, 8020][X])  # 08075
 goto([8261, 8253][S[45]])  # 08076
-call_method(11000)  # 08093
+call_method_11000()  # 08093
 Z = 39  # XXXXX LABYRintRUM 4 XXXXX  # 08095
 print("Du är i ett rum med hål överallt.")  # 08096
 if S[48] > 0:
@@ -3389,7 +3452,7 @@ Z = 97  # XXXXX MÖRK GÅNG ÖVER LAB.4 XXXX  # 08149
 call_method_12200()  # 08150
 if X > 0:
     goto([17000, 25000, 18000, 10020, 8300, 8155, 8153][X])  # 08152
-call_method(11000)  # 08153
+call_method_11000()  # 08153
 goto(8149)  # 08154
 if S[47] == 1:
     goto(9510)
@@ -3661,7 +3724,7 @@ if A[30] == 1:
     print("en förlängningssladd till telefonen")  # 08656
 goto(12210)  # 08663
 print("Du kan inte få nå #n hjälp så som du ser ut!")
-D = random.randint(0, 5) + 1  # 08700
+D = random.randint(1, 6)  # 08700
 goto([8000, 8300, 8095, 8035, 8420][D])  # 08701
 S[43] = 1  # XXX MUPPET SHOW XXX  # 08800
 if W_(6) != "":
@@ -3768,7 +3831,7 @@ if FNL_(A_, 5) == "HÖGER":
     goto(8950)  # 08917
 goto(8915)  # 08918
 print("Du går fram mot Wayne & Wanda för att sluta fred.")  # 08920
-D = random.randint(0, 0) + 1  # 08921
+D = random.randint(1, 20)  # 08921
 if D == 1:
     goto(8904)  # 08922
 print("Du bestämmer att du inte ska sjunga mer så W&W")  # 08923
@@ -3804,7 +3867,7 @@ if FNL_(A_, 5) == "SPRIN":
 goto(8953)  # 08957
 print("Du springer rätt in i ett monster som slukar grönsaker!")  # 08960
 print("Han tar upp dej och kastar dej högt upp i luften.")  # 08961
-D = random.randint(0, 5) + 1  # 08963
+D = random.randint(1, 6)  # 08963
 goto([8327, 1500, 14100, 9145, 16000][D])
 goto([8327, 1500, 14100, 9145, 16000][D])  # 08964
 print("Du är inne i en tortyrkammare. Dörren gick i lås bakom dej!")  # 08970
@@ -3834,7 +3897,7 @@ print("Kermit: Öh...Vi får visst avrunda här. Nästa veckas ämne:")  # 08994
 print("-Varför retas folk?")  # 08995
 print("Vi ses då i: *****THE MUPPET SHOW*****")  # 08996
 goto(1500)  # 08997
-call_method(11000)  # 08999
+call_method_11000()  # 08999
 Z = 21
 R_ = "första"  # XXXX HISSRUM 1 XXX Z=21 XXX  # 09000
 call_method(9250)  # 09002
@@ -3845,7 +3908,7 @@ if X != 3:
     goto(8999)  # 09010
 call_method(9260)  # 09012
 goto([9008, 9300, 9000][X])  # 09014
-call_method(11000)  # 09019
+call_method_11000()  # 09019
 Z = 28
 R_ = "åttonde"  # XXXX HISSRUM 8 XXX Z=28 XXX  # 09020
 call_method(9250)  # 09022
@@ -3873,7 +3936,7 @@ if X != 4:
     goto(9056)  # 09051
 call_method(9260)  # 09053
 goto([9047, 9300, 9035][X])  # 09055
-call_method(11000)  # 09056
+call_method_11000()  # 09056
 print("Du är i andra våningens hissrum.")  # 09058
 goto(9045)  # 09060
 Z = 23  # XXXX HISSRUM 3 XXX Z=23 XXX  # 09065
@@ -3888,12 +3951,12 @@ if X1 == 1:
     goto(9065)  # 09071
 if X == 3:
     goto(8300)  # 09072
-call_method(11000)  # 09073
+call_method_11000()  # 09073
 print("Du är i toaletten.")
 goto(9069)  # 09074
 print("Du befinner dej")  # 09075
 goto(9450)  # 09076
-call_method(11000)  # 09099
+call_method_11000()  # 09099
 Z = 27
 R_ = "sjunde"  # XXXX HISSRUM 7 XXX Z=27 XXX  # 09100
 call_method(9250)  # 09102
@@ -3904,7 +3967,7 @@ if X != 3:
     goto(9099)  # 09105
 call_method(9260)  # 09106
 goto([9104, 9300, 9100][X])  # 09107
-call_method(11000)  # 09144
+call_method_11000()  # 09144
 Z = 24
 R_ = "fjärde"  # XXXX HISSRUM 4 XXX Z=24 XXX  # 09145
 call_method(9250)  # 09146
@@ -3918,7 +3981,7 @@ if X != 3:
     goto(9144)  # 09154
 call_method(9260)  # 09156
 goto([9150, 9300, 9145][X])  # 09158
-call_method(11000)  # 09174
+call_method_11000()  # 09174
 Z = 26
 R_ = "sjätte"  # XXXX HISSRUM 6 XXX Z=26 XXX  # 09175
 call_method(9250)  # 09177
@@ -3929,7 +3992,7 @@ if X != 3:
     goto(9174)  # 09183
 call_method(9260)  # 09185
 goto([9181, 9300, 9175][X])  # 09187
-call_method(11000)  # 09189
+call_method_11000()  # 09189
 Z = 29
 R_ = "nionde"  # XXXX HISSRUM 9 XXX Z=29 XXX  # 09190
 call_method(9250)  # 09192
@@ -4022,8 +4085,8 @@ print("Du är i hissen. Här finns tio knappar. Dom nio första är numrerade") 
 print("1-9. På den sista står det NÖDSTOPP.")  # 09306
 call_method_6000()  # 09307
 print("Vilken knapp trycker du på ? ")  # 09308
-E = random.randint(0, 9) + 1
-E1 = random.randint(0, 5) + 5  # 09309
+E = random.randint(1, 9)  # 09309
+E1 = random.randint(5, 20)
 if S[40] == 0:  # ? or M3%==1%:
     goto(9315)
 else:
@@ -4050,7 +4113,7 @@ if ASCII(A_) > 48 and ASCII(A_) < 58:
     goto(9316)  # 09330
 if X1 == 1:
     goto(9300)  # 09331
-call_method(11000)
+call_method_11000()
 goto(9305)  # 09332
 if S[41] != 1:
     goto(9355)  # 09335
@@ -4081,14 +4144,14 @@ if S[35] == 0 and (INSTR(A_, "BÅT") > 0 or A_ == "RO"):
     goto(9390)  # 09368
 if X != 0:
     goto([20000, 9424, 20070, 9374, 20200, 9374, 9372, 9374, 20085, 2107][X])  # 09370
-call_method(11000)
+call_method_11000()
 goto(9361)  # 09372
 print("Du kan väl inte gå på vattnet?")
 goto(9361)  # 09374
 Z = 78  # XXXX I BÅTEN XXXXX Z=78 XXXXX  # 09390
 print("Du sitter i båten, mitt i sjön.")  # 09391
-call_method_15200()
-S[35] = random.randint(0, 2)  # 09392
+call_method_15200()  # 09392
+S[35] = random.randint(0, 1)
 if X == 1:
     goto(9410)  # 09393
 if X == 2:
@@ -4101,7 +4164,7 @@ if X == 4:
 goto(2200)  # 09396
 if X == 10:
     goto(2107)  # 09397
-call_method(11000)  # 09399
+call_method_11000()  # 09399
 print("Skriv söder, norr, öster eller väster.")  # 09400
 goto(9392)  # 09401
 print("Oj, en motorbåt åkte för nära dej.")  # 09410
@@ -4134,7 +4197,7 @@ print("Kan du gå på vattnet?")  # 09432
 goto(9424)  # 09433
 if INSTR(A_, "BADHYTT") > 0 or FNL_(A_, 5) == "ÖPPNA" or A_ == "IN":
     goto(9439)  # 09436
-call_method(11000)  # 09437
+call_method_11000()  # 09437
 goto(9424)  # 09438
 print("Du går in i badhytten men golvet ger vika och du faller...")  # 09439
 goto(25000)  # 09440
@@ -4166,7 +4229,7 @@ if S[46] == 1:
     goto(9479)  # 09471
 if S[46] == 6:
     goto(9483)  # 09472
-D = random.randint(0, 0) + 1  # 09473
+D = random.randint(1, 10)  # 09473
 if D > 3:
     goto(9479)  # 09474
 print("POFF!!! Ett grönt gasmoln omger dej!")  # 09475
@@ -4194,7 +4257,7 @@ if X1 == 1:
     goto(9490)  # 09497
 if X > 0:
     goto([9501, 9501, 9510, 9558, 9545, 14000, 9501][X])  # 09500
-call_method(11000)  # 09501
+call_method_11000()  # 09501
 print("Du är i ett dunkelt, dammtäckt rum.")
 goto(9496)  # 09502
 Z = 55  # XXXXX VIGGOS HEMLIGA RUM 2 XXXXX  # 09510
@@ -4211,7 +4274,7 @@ if FNL_(A_, 5) == "KLIPP" and S[47] == 0:
     goto(9520)  # 09517
 if (FNL_(A_, 5) == "ÖPPNA" or FNL_(A_, 3) == "DRA") and S[47] == 0:
     goto(9523)  # 09518
-call_method(11000)
+call_method_11000()
 goto(9510)  # 09519
 if A[27] == 1:
     goto(9535)  # 09520
@@ -4247,7 +4310,7 @@ if X == 6:
     goto(9490)  # 09550
 if FNL_(A_, 3) == "LÅS":
     goto(9553)  # 09551
-call_method(11000)
+call_method_11000()
 goto(9545)  # 09552
 if A[26] != 1 or A[28] != 2:
     print("Det kan du inte.")
@@ -4255,7 +4318,7 @@ goto(9545)  # 09553
 print("Du låser upp lådan och hittar en slägga. Lådan försvinner.")  # 09554
 A[28] = 56
 goto(9545)  # 09555
-call_method(11000)  # 09556
+call_method_11000()  # 09556
 print("Du är i höger kammare.")
 goto(9562)  # 09557
 Z = 57  # XXXXX VIGGOS HEMLIGA RUM 4 XXXXX  # 09558
@@ -4278,7 +4341,7 @@ if A[28] != 1:
 print("Du krossar glaset. Saxen ramlar ur och asken försvinner i ett moln.")  # 09570
 A[27] = 57
 goto(9557)  # 09571
-D = random.randint(0, 0)  # 09575
+D = random.randint(0, 9)  # 09575
 if D < 4:
     print("Gången mynnar ut i ett hus.")
 goto(2241)  # 09576
@@ -4302,7 +4365,7 @@ if S[8] < 3 or S[8] > 7:
     goto(10009)
 else:
     goto(10000)  # 09995
-call_method(11000)  # 09997
+call_method_11000()  # 09997
 print("Du är i hallen.")  # 10000
 call_method_12200()  # 10001
 if S1 > 0:
@@ -4343,35 +4406,35 @@ if X1 == 1:
 if X == 0:
     goto(10040)  # 10034
 goto([10050, 25130, 25100, 10050, 21100, 25000, 10090][X])  # 10036
-if A[15] > 0:
-    goto(10050)  # 10040
-if FNL_(A_, 5) == "KROSS" or FNL_(A_, 3) == "SLÅ":
-    goto(10084)  # 10042
-if FNL_(A_, 4) == "SKÄR":
-    goto(10060)  # 10044
+if A[15] > 0:  # 10040
+    goto(10050)
+if FNL_(A_, 5) == "KROSS" or FNL_(A_, 3) == "SLÅ":  # 10042
+    goto(10084)
+if FNL_(A_, 4) == "SKÄR":  # 10044
+    goto(10060)
 if FNL_(A_, 5) == "ÖPPNA":
     print("Du kan inte öppna fönstret.")
 goto(10052)  # 10046
-call_method(11000)  # 10050
+call_method_11000()  # 10050
 print("Du är i Skumgummirummet.")  # 10052
 goto(10030)  # 10054
-if INSTR(A_, "DIAMA") > 0:
-    goto(10072)  # 10060
-if INSTR(A_, "TUNGA") > 0:
-    goto(9075)  # 10062
+if INSTR(A_, "DIAMA") > 0:  # 10060
+    goto(10072)
+if INSTR(A_, "TUNGA") > 0:  # 10062
+    goto(9075)
 A_ = FNI_("Vad ska du skära med? Din vassa tunga ?")  # 10064
 A_ = FNC_(A_)  # 10065
 if A_ == "JA" or FNL_(A_, 5) == "TUNGA":
     goto(9075)  # 10066
-if A_ == "NEJ":
+if A_ == "NEJ":  # 10068
     print("Det var ju skönt!")
-goto(10052)  # 10068
-if FNL_(A_, 5) != "DIAMA":
+    goto(10052)
+if FNL_(A_, 5) != "DIAMA":  # 10070
     print("Det går inte!")
-goto(10052)  # 10070
-if A[1] != 1:
+    goto(10052)
+if A[1] != 1:  # 10072
     print("Du bär väl ingen DIAMANT!")
-goto(10052)  # 10072
+    goto(10052)
 print("Du skär upp fönstret med diamanten.")  # 10074
 print("En kofot ramlar ut och slår dej hårt i huvudet.")  # 10076
 print("Du rasar ihop av slaget." + FNS_("sover", 10))  # 10078
@@ -4379,9 +4442,9 @@ S[2] = S[2] + 10
 print("När du vaknar är du fortfarande i Skumgummirummet.")  # 10079
 A[15] = 16
 goto(10030)  # 10080
-if A[28] != 1:
+if A[28] != 1:  # 10084
     print("Du har inget att slå med.")
-goto(10052)  # 10084
+    goto(10052)
 print("Du krossar fönstret med släggan. Därbakom finns en kofot.")  # 10086
 print("Thorvald springer fram och säjer: - Jag hörde braket! Nu tar jag")  # 10087
 print("kofoten som betalning för det förstörda fönstret.")  # 10088
@@ -4396,67 +4459,7 @@ if A[1] == 1:
     print("Skär upp fönstret med din diamant!")  # 10094
 S[2] = S[2] - 5
 goto(10052)  # 10096
-# VIOLS SUBFELMEDDELANDERUTIN 3  # 11000
-if X1 > 0 or S1 > 0:  # 11001
-    goto(11100)
-else:
-    S[50] = S[50] - 1
-if INSTR(A_, "HJÄLP") > 0:  # 11002
-    print("Du kan inte få någon hjälp här.")
-    goto(11100)
-if A_ == "N" or A_ == "V":  # 11003
-    print("Du kan inte gå ditåt.")
-    goto(11100)
-if INSTR("*NORR*SÖDER*VÄSTER*ÖSTER*NV*NÖ*NO*SV*SÖ*SO", "*" + A_) > 0:
-    goto(11200)  # 11004
-if INSTR("*NORDVÄST*NORDÖST*NORDOST*SYDVÄST*SYDÖST*SYDOST", "*" + A_) > 0:
-    goto(11200)  # 11005
-if INSTR("*UPPÅT*NEDÅT*NERÅT*VÄNSTER*HÖGER*FRAMÅT*BAKÅT", "*" + A_) > 0:
-    goto(11220)  # 11006
-if INSTR(A_, "SESAM") == 0 and INSTR(A_, "KORKSKRUV") == 0:
-    goto(11011)  # 11007
-print("Ingenting händer.")  # 11008
-goto(11100)  # 11009
-if INSTR(A_, "STÄNG") > 0:
-    print("Det finns inget du kan stänga här!")
-goto(11100)  # 11011
-if INSTR(A_, "KROSS") > 0:
-    print("Det finns inget du kan krossa här!")
-goto(11100)  # 11013
-if INSTR(A_, "SKÄR") > 0:
-    print("Det finns inget du kan skära här!")
-    goto(11100)  # 11014
-if A_ == "SE" or INSTR(A_, "TITTA") > 0:
-    pass  # ? return  # 11015
-if FNL_(A_, 5) == "HOPPA" and X == 1:
-    print("Du kommer ingenstans uppåt.")
-goto(11100)  # 11017
-if FNL_(A_, 5) == "HOPPA":
-    print("Det finns inget hål att hoppa ner genom.")
-goto(11100)  # 11018
-D = random.randint(0, 5) + 1  # 11080
-if D == 1:
-    print("Va ??")  # 11081
-if D == 2:
-    print("Jag förstår inte.")  # 11082
-if D == 3:
-    print("Det förstår jag inte alls.")  # 11083
-if D == 4:
-    print("Det vet jag inte vad det betyder.")  # 11084
-if D == 5:
-    print("Uttryck Dej klarare.")  # 11085
-print()  # 11099
-# ? return  # 11100
-if S[36] == 0:
-    print("Inomhus ska du ange riktningar, inte väderstreck.")  # 11200
-if S[36] != 0:
-    print("Du kan inte gå ditåt.")  # 11202
-goto(11100)  # 11205
-if S[36] == 1:
-    print("Utomhus ska du ange väderstreck, inte riktningar.")  # 11220
-if S[36] != 1:
-    print("Du kan inte gå ditåt.")  # 11225
-goto(11100)  # 11230
+
 
 
 if ERROR:  # 90000
