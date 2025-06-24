@@ -9,54 +9,203 @@ _DEBUG = True
 
 # === DATA ===
 DATA = [
-	"DIAMANT","DIAMA","DIAMA","diamanten",15,  # 90300
-	"GURKA","GURKA","ILLAL","gurkan",0,  # 90302
-	"SILVERTACKA","SILVE","TACKA","silvertackan",31,  # 90304
-	"HILLEBARD","HILLE","JUVEL","hillebarden",2,  # 90306
-	"DÖDSKALLE","DÖDSK","SKALL","dödskallen",0,  # 90308
-	"KLOCKA","VÄCKA","KLOCK","klockan",59,  # 90310
-	"GULDMYNT","GULD","MYNT","guldmynten",0,  # 90312
-	"TRILOGI","TRILO","SAGAN","trilogin",36,  # 90314
-	"KONTRAKT","KONTR","SKÄRT","kontraktet",0,  # 90316
-	"LAGERKRANS","LAGER","KRANS","lagerkransen",53,  # 90318
-	"PÄRLHALSBAND","PÄRL","HALSB","pärlhalsbandet",0,  # 90320
-	"FAUNSKO","FAUN","SKO","faunskon",0,  # 90322
-	"KOFOT","KOFOT","KOFOT","kofoten",0,  # 90330
-	"CYKELPUMP","CYKEL","PUMP","cykelpumpen",0,  # 90332
-	"STEGE","STEGE","STEGE","stegen",4,  # 90334
-	"BRÄNNVINSFLASKA","BRÄNN","BRÄNN","brännvinsflaskan",97,  # 90336
-	"VATTENFLASKA","VATTENF","VATTENF","vattenflaskan",0,  # 90338
-	"BOLL","BOLL","BOLL","bollen",8,  # 90340
-	"SPADE","SPADE","SPADE","spaden",61,  # 90342
-	"LIK","LIK","LIK","liket",0,  # 90344
-	"KATALOG","KATAL","TELEFONK","katalogen",0,  # 90346
-	"LAMPA","LAMPA","LAMPA","lampan",0,  # 90348
-	"TELEFON","TELEF","TELEF","telefonen",100,  # 90350
-	"NYCKLAR","NYCKL","NYCKE","nycklarna",54,  # 90352
-	"SAX","SAX","SAX","saxen",2,  # 90354
-	"SLÄGGA","SLÄGG","SLÄGG","släggan",2,  # 90356
-	"VAKT","VAKT","VAKT","vakten",58,  # 90357
-	"FÖRLÄNGNINGSSLADD","FÖRLÄ","SLADD","förlängningssladden",26,  # 90358
-	# Data för Fozzis berättelse  # 90400
-	"Dodge City","Boot Hill","en by i Montana","fantomengrottan",  # 90402
-	"fängelsechefen i Råå","Trondheim",  # 90404
-	"bröderna Dalton","Sven Olssons kvintett","bröderna Brothers",  # 90406
-	"Kimmo, den gamle fyllbulten,","Curt Nicolin","Jesse James",  # 90408
-	"fängelset","San Franciscos hem för tankspridda","sin limosin",  # 90410
-	"burarna i Bronx Zoo","en labyrint i Småland","riksdagshuset",  # 90412
-	"fritidsorganet GLAD OCH NAKEN","sheriffen","guldlasten",  # 90414
-	"några glada flickor","en aktie i Kuben","en illaluktande gurka",  # 90416
-	"fruktans demoner","ett bankrån","Butch Cassidys hustru",  # 90418
-	"jultomten","en hjärnskakningsepidemi","kvarterspolisen",  # 90420
-	"ett bakhåll","ett fel på Malmös TV 2-sändare","en taxi",  # 90422
-	"att toaletten ska bli ledig","att sheriffen ska göra något","Lucky Luke",  # 90424
-	"skjuta sönder stan","störa indianerna","varsla om lockout",  # 90426
-	"väcka guvernören","ta gisslan på Norges ambassad","dra sej tillbaka",  # 90428
-	"rädda","lätt berusade","måna om sitt utseende","allt färre",  # 90430
-	"svårflörtade","sömniga",  # 90432
-	"på ett helt annat ställe","för sent","i grevens tid",  # 90434
-	"en liten aning för tidigt","samtidigt","inte",  # 90436
+    "DIAMANT",
+    "DIAMA",
+    "DIAMA",
+    "diamanten",
+    15,  # 90300
+    "GURKA",
+    "GURKA",
+    "ILLAL",
+    "gurkan",
+    0,  # 90302
+    "SILVERTACKA",
+    "SILVE",
+    "TACKA",
+    "silvertackan",
+    31,  # 90304
+    "HILLEBARD",
+    "HILLE",
+    "JUVEL",
+    "hillebarden",
+    2,  # 90306
+    "DÖDSKALLE",
+    "DÖDSK",
+    "SKALL",
+    "dödskallen",
+    0,  # 90308
+    "KLOCKA",
+    "VÄCKA",
+    "KLOCK",
+    "klockan",
+    59,  # 90310
+    "GULDMYNT",
+    "GULD",
+    "MYNT",
+    "guldmynten",
+    0,  # 90312
+    "TRILOGI",
+    "TRILO",
+    "SAGAN",
+    "trilogin",
+    36,  # 90314
+    "KONTRAKT",
+    "KONTR",
+    "SKÄRT",
+    "kontraktet",
+    0,  # 90316
+    "LAGERKRANS",
+    "LAGER",
+    "KRANS",
+    "lagerkransen",
+    53,  # 90318
+    "PÄRLHALSBAND",
+    "PÄRL",
+    "HALSB",
+    "pärlhalsbandet",
+    0,  # 90320
+    "FAUNSKO",
+    "FAUN",
+    "SKO",
+    "faunskon",
+    0,  # 90322
+    "KOFOT",
+    "KOFOT",
+    "KOFOT",
+    "kofoten",
+    0,  # 90330
+    "CYKELPUMP",
+    "CYKEL",
+    "PUMP",
+    "cykelpumpen",
+    0,  # 90332
+    "STEGE",
+    "STEGE",
+    "STEGE",
+    "stegen",
+    4,  # 90334
+    "BRÄNNVINSFLASKA",
+    "BRÄNN",
+    "BRÄNN",
+    "brännvinsflaskan",
+    97,  # 90336
+    "VATTENFLASKA",
+    "VATTENF",
+    "VATTENF",
+    "vattenflaskan",
+    0,  # 90338
+    "BOLL",
+    "BOLL",
+    "BOLL",
+    "bollen",
+    8,  # 90340
+    "SPADE",
+    "SPADE",
+    "SPADE",
+    "spaden",
+    61,  # 90342
+    "LIK",
+    "LIK",
+    "LIK",
+    "liket",
+    0,  # 90344
+    "KATALOG",
+    "KATAL",
+    "TELEFONK",
+    "katalogen",
+    0,  # 90346
+    "LAMPA",
+    "LAMPA",
+    "LAMPA",
+    "lampan",
+    0,  # 90348
+    "TELEFON",
+    "TELEF",
+    "TELEF",
+    "telefonen",
+    100,  # 90350
+    "NYCKLAR",
+    "NYCKL",
+    "NYCKE",
+    "nycklarna",
+    54,  # 90352
+    "SAX",
+    "SAX",
+    "SAX",
+    "saxen",
+    2,  # 90354
+    "SLÄGGA",
+    "SLÄGG",
+    "SLÄGG",
+    "släggan",
+    2,  # 90356
+    "VAKT",
+    "VAKT",
+    "VAKT",
+    "vakten",
+    58,  # 90357
+    "FÖRLÄNGNINGSSLADD",
+    "FÖRLÄ",
+    "SLADD",
+    "förlängningssladden",
+    26,  # 90358
+    # Data för Fozzis berättelse  # 90400
+    "Dodge City",
+    "Boot Hill",
+    "en by i Montana",
+    "fantomengrottan",  # 90402
+    "fängelsechefen i Råå",
+    "Trondheim",  # 90404
+    "bröderna Dalton",
+    "Sven Olssons kvintett",
+    "bröderna Brothers",  # 90406
+    "Kimmo, den gamle fyllbulten,",
+    "Curt Nicolin",
+    "Jesse James",  # 90408
+    "fängelset",
+    "San Franciscos hem för tankspridda",
+    "sin limosin",  # 90410
+    "burarna i Bronx Zoo",
+    "en labyrint i Småland",
+    "riksdagshuset",  # 90412
+    "fritidsorganet GLAD OCH NAKEN",
+    "sheriffen",
+    "guldlasten",  # 90414
+    "några glada flickor",
+    "en aktie i Kuben",
+    "en illaluktande gurka",  # 90416
+    "fruktans demoner",
+    "ett bankrån",
+    "Butch Cassidys hustru",  # 90418
+    "jultomten",
+    "en hjärnskakningsepidemi",
+    "kvarterspolisen",  # 90420
+    "ett bakhåll",
+    "ett fel på Malmös TV 2-sändare",
+    "en taxi",  # 90422
+    "att toaletten ska bli ledig",
+    "att sheriffen ska göra något",
+    "Lucky Luke",  # 90424
+    "skjuta sönder stan",
+    "störa indianerna",
+    "varsla om lockout",  # 90426
+    "väcka guvernören",
+    "ta gisslan på Norges ambassad",
+    "dra sej tillbaka",  # 90428
+    "rädda",
+    "lätt berusade",
+    "måna om sitt utseende",
+    "allt färre",  # 90430
+    "svårflörtade",
+    "sömniga",  # 90432
+    "på ett helt annat ställe",
+    "för sent",
+    "i grevens tid",  # 90434
+    "en liten aning för tidigt",
+    "samtidigt",
+    "inte",  # 90436
 ]
+
 
 # === TEMP ===
 def goto(instruction_number: int) -> None:
@@ -71,7 +220,7 @@ def goto(instruction_number: int) -> None:
     assert line != -1
     scope = []
     for idx, source_line in enumerate(source_lines[:line]):
-        if source_line.startswith(('import ', 'from ')):
+        if source_line.startswith(("import ", "from ")):
             scope.insert(0, source_lines[idx])
         if source_line.startswith("def "):
             scope.append(source_line)
@@ -92,6 +241,7 @@ def goto(instruction_number: int) -> None:
         time.sleep(1)
     exec(source_code, module.__dict__)
     sys.exit(0)
+
 
 # === UTILS ===
 def INSTR(X1: str, X2: str) -> int:
@@ -127,6 +277,7 @@ def busy(n: int, msg: str):
     try:
         # Windows
         import msvcrt
+
         while True:
             if msvcrt.kbhit():
                 msvcrt.getch()
@@ -139,6 +290,7 @@ def busy(n: int, msg: str):
         import select
         import termios
         import tty
+
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
         try:
@@ -170,17 +322,17 @@ def FNM_(X1_: str, X: int) -> str:  # 90840
     """Returns middle part of a str"""
     if X > len(X1_) or X <= 0:
         return ""
-    return X1_[X-1:len(X1_) - X]  # 90850
+    return X1_[X - 1 : len(X1_) - X]  # 90850
 
 
 def FNF_(xi):  # 90900
-    #? maybe incorrect, if data pointer must persist
+    # ? maybe incorrect, if data pointer must persist
     return DATA[X[xi] + 1]
 
 
 def FNI_(X1_) -> str:  # 90950
-    #? only partially fixed
-    #if M2_ = 1 and W_ != CHR_(3):
+    # ? only partially fixed
+    # if M2_ = 1 and W_ != CHR_(3):
     #    print()#2,W_ #&&&&&  # 90960
     # print(X1_)  # 90970
     # ? if M3%==0%:  # 90980
@@ -200,8 +352,9 @@ Modul med metoder för spara och återskapa,
 logga och läs från logg, som inte är implementerade än.
 """
 
+
 def call_method_80000():
-    print('TODO: Detta är inte implementerat än.')
+    print("TODO: Detta är inte implementerat än.")
     return
 
     # *** SPARA *** &&&&& DEC-10 SPECIELL KOD PÅ 80000-80565  # 80000
@@ -235,7 +388,7 @@ def call_method_80000():
 
 
 def call_method_80200():
-    print('TODO: Detta är inte implementerat än.')
+    print("TODO: Detta är inte implementerat än.")
     return
 
     # *** ÅTERSKAPA *** #&&&&&  # 80200
@@ -319,11 +472,15 @@ def call_method_80200():
         )  # &&&&&  # 80380
     if Z < 71:
         goto(
-            [36000, 13173, 36050, 14000, 14100, 20180, 20240, 20255, 2019, 20000][Z - 60]
+            [36000, 13173, 36050, 14000, 14100, 20180, 20240, 20255, 2019, 20000][
+                Z - 60
+            ]
         )  # &&&&&  # 80385
     if Z < 81:
         goto(
-            [20020, 20030, 20040, 20055, 20070, 20085, 20107, 9390, 20155, 20143][Z - 70]
+            [20020, 20030, 20040, 20055, 20070, 20085, 20107, 9390, 20155, 20143][
+                Z - 70
+            ]
         )  # &&&&&  # 80390
     if Z < 91:
         goto(
@@ -352,45 +509,53 @@ def call_method_80200():
 
 # == MAIN ==
 
+
 def call_method_11000():
     # VIOLS SUBFELMEDDELANDERUTIN 3  # 11000
     if X1 > 0 or S1 > 0:  # 11001
-        goto(11100)
-    else:
-        S[50] = S[50] - 1
+        return
+    S[50] = S[50] - 1
     if INSTR(A_, "HJÄLP") > 0:  # 11002
         print("Du kan inte få någon hjälp här.")
-        goto(11100)
+        return
     if A_ == "N" or A_ == "V":  # 11003
         print("Du kan inte gå ditåt.")
-        goto(11100)
-    if INSTR("*NORR*SÖDER*VÄSTER*ÖSTER*NV*NÖ*NO*SV*SÖ*SO", "*" + A_) > 0:
-        goto(11200)  # 11004
-    if INSTR("*NORDVÄST*NORDÖST*NORDOST*SYDVÄST*SYDÖST*SYDOST", "*" + A_) > 0:
-        goto(11200)  # 11005
+        return
+    if (
+        INSTR("*NORR*SÖDER*VÄSTER*ÖSTER*NV*NÖ*NO*SV*SÖ*SO", "*" + A_) > 0
+        or INSTR("*NORDVÄST*NORDÖST*NORDOST*SYDVÄST*SYDÖST*SYDOST", "*" + A_) > 0
+    ):
+        if S[36] == 0:  # 11200
+            print("Inomhus ska du ange riktningar, inte väderstreck.")
+        else:  # 11202
+            print("Du kan inte gå ditåt.")
+        return  # 11205
     if INSTR("*UPPÅT*NEDÅT*NERÅT*VÄNSTER*HÖGER*FRAMÅT*BAKÅT", "*" + A_) > 0:
-        goto(11220)  # 11006
-    if INSTR(A_, "SESAM") == 0 and INSTR(A_, "KORKSKRUV") == 0:
-        goto(11011)  # 11007
-    print("Ingenting händer.")  # 11008
-    goto(11100)  # 11009
-    if INSTR(A_, "STÄNG") > 0:
+        if S[36] == 1:  # 11220
+            print("Utomhus ska du ange väderstreck, inte riktningar.")
+        else:  # 11225
+            print("Du kan inte gå ditåt.")
+        return  # 11230
+    if not (INSTR(A_, "SESAM") == 0 and INSTR(A_, "KORKSKRUV") == 0):
+        print("Ingenting händer.")  # 11008
+        return  # 11009
+    if INSTR(A_, "STÄNG") > 0:  # 11011
         print("Det finns inget du kan stänga här!")
-    goto(11100)  # 11011
-    if INSTR(A_, "KROSS") > 0:
+        return
+    if INSTR(A_, "KROSS") > 0:  # 11013
         print("Det finns inget du kan krossa här!")
-    goto(11100)  # 11013
-    if INSTR(A_, "SKÄR") > 0:
+        return
+    if INSTR(A_, "SKÄR") > 0:  # 11014
         print("Det finns inget du kan skära här!")
-        goto(11100)  # 11014
-    if A_ == "SE" or INSTR(A_, "TITTA") > 0:
-        pass  # ? return  # 11015
+        return
+    if A_ == "SE" or INSTR(A_, "TITTA") > 0:  # 11015
+        return
     if FNL_(A_, 5) == "HOPPA" and X == 1:  # 11017
         print("Du kommer ingenstans uppåt.")
-        goto(11100)
+        return
     if FNL_(A_, 5) == "HOPPA":  # 11018
         print("Det finns inget hål att hoppa ner genom.")
-        goto(11100)
+        return
     D = random.randint(1, 5)  # 11080
     if D == 1:
         print("Va ??")  # 11081
@@ -403,22 +568,13 @@ def call_method_11000():
     if D == 5:
         print("Uttryck Dej klarare.")  # 11085
     print()  # 11099
-    # ? return  # 11100
-    if S[36] == 0:  # 11200
-        print("Inomhus ska du ange riktningar, inte väderstreck.")
-    if S[36] != 0:  # 11202
-        print("Du kan inte gå ditåt.")
-    goto(11100)  # 11205
-    if S[36] == 1:  # 11220
-        print("Utomhus ska du ange väderstreck, inte riktningar.")
-    if S[36] != 1:  # 11225
-        print("Du kan inte gå ditåt.")
-    goto(11100)  # 11230
+    return  # 11100
+
 
 def call_method_12200():
     if _DEBUG:
         time.sleep(0.5)
-        print('call_method_12200')
+        print("call_method_12200")
     #  #XXXXX ALLMÄN GOSUBRUTIN XXXXXX  # 12200
     call_method_6000()  # 12201
     print()  # 12202
@@ -519,7 +675,9 @@ def call_method_12200():
         print(TAB(random.randint(0, 6) + 1) + "HICK    !")  # 12318
     print()
     S[31] = 1  # 12322
-    print("Nu hoppas jag att vi har nyktrat till så pass att vi kan fortsätta!")  # 12324
+    print(
+        "Nu hoppas jag att vi har nyktrat till så pass att vi kan fortsätta!"
+    )  # 12324
     goto(12210)  # 12326
     if FNL_(C_, 5) == "GUBBE" or (C_ == "" and S[30] == Z):
         goto(30010)  # 12340
@@ -560,7 +718,9 @@ def call_method_12200():
     if S[6] == 0:
         S[6] = 1
     goto(12210)  # 12372
-    print("Den nu redlöst fulle vakten ramlar ihop i en hög på golvet och somnar.")  # 12374
+    print(
+        "Den nu redlöst fulle vakten ramlar ihop i en hög på golvet och somnar."
+    )  # 12374
     S[6] = 3
     A[29] = Z  # 12376
     goto(12210)  # 12378
@@ -909,7 +1069,9 @@ def call_method_12200():
     goto(12210)  # 12920
     print("Jag ser ingen GUBBE här.")
     goto(12210)  # 12922
-    print("Du ska inte ha någon fördel bara för att Stugrådet råkar ha samman-")  # 12924
+    print(
+        "Du ska inte ha någon fördel bara för att Stugrådet råkar ha samman-"
+    )  # 12924
     print("träde när du ramlar in. Du får försöka hitta skattkammaren själv.")  # 12926
     print("(Förresten har dom redan försvunnit!)")
     goto(12210)  # 12928
@@ -1126,7 +1288,7 @@ def call_method_12200():
 def call_method_15200():
     if _DEBUG:
         time.sleep(0.5)
-        print('call_method_15200')
+        print("call_method_15200")
     # XXXXX ALLMÄN GOSUBRUTIT XXXXX  # 15200
     call_method_6000()
     print()  # 15202
@@ -1169,7 +1331,9 @@ def call_method_15200():
         goto(15349)  # 15359
     call_method_11000()  # 15369
     Z = 47  # XXX TRAPPRUM 2 XXX  # 15370
-    print("Du är i ett rum med en nedåtgående rulltrappa och en dörr åt höger.")  # 15372
+    print(
+        "Du är i ett rum med en nedåtgående rulltrappa och en dörr åt höger."
+    )  # 15372
     if S[18] == 1:
         print("Rulltrappan är avspärrad av Stugas gatukontor.")  # 15373
     call_method_12200()  # 15374
@@ -1331,13 +1495,17 @@ def call_method_15200():
     goto([40000, 1960, 1960][random.randint(0, 2)])  # 18110
     print("Du trampas på tårna av en faun, så du springer ut igen.")  # 18120
     goto(18110)  # 18125
-    if S[2] > 50: # 20000
+    if S[2] > 50:  # 20000
         print("Du är på bryggan och ser ett hus rakt fram.")  # 20005
     else:
-        print("Du står på en brygga någonstans i Småland. Bakom din solvärmda rygg")  # 20001
-        print("åker man vattenskidor. En kyrkklocka (som du inte ser) slår tolv.")  # 20002
+        print(
+            "Du står på en brygga någonstans i Småland. Bakom din solvärmda rygg"
+        )  # 20001
+        print(
+            "åker man vattenskidor. En kyrkklocka (som du inte ser) slår tolv."
+        )  # 20002
         print("Du ser ett hus rakt fram.")  # 20003
-    pass # 20004
+    pass  # 20004
     Z = 70  # 20006
     call_method_15200()  # 20007
     if S1 > 0:  # 20008
@@ -1345,9 +1513,7 @@ def call_method_15200():
     if X1 == 1:  # 20009
         goto(20000)
     if X != 0:  # 20010
-        goto(
-            [20030, 9361, 20200, 20013, 20020, 20013, 20011, 20013, 20070, 2107][X]
-        )
+        goto([20030, 9361, 20200, 20013, 20020, 20013, 20011, 20013, 20070, 2107][X])
     call_method_11000()  # 20011
     goto(20005)  # 20012
     print("Du kan väl inte gå på vattnet?")  # 20013
@@ -1356,7 +1522,9 @@ def call_method_15200():
     print("Du är i skogen.")  # 20021
     call_method_15200()  # 20024
     if X != 0:
-        goto([20040, 20200, 20028, 20030, 20028, 20055, 20026, 20005, 20028][X])  # 20025
+        goto(
+            [20040, 20200, 20028, 20030, 20028, 20055, 20026, 20005, 20028][X]
+        )  # 20025
     call_method_11000()  # 20026
     goto(20020)  # 20027
     print("Ett staket hindrar dej att gå ditåt.")  # 20028
@@ -1393,7 +1561,9 @@ def call_method_15200():
     if A_ == "SESAM":
         goto(14034)  # 20046
     if X != 0:
-        goto([20050, 20020, 20050, 20055, 20050, 20050, 20048, 20030, 20050][X])  # 20047
+        goto(
+            [20050, 20020, 20050, 20055, 20050, 20050, 20048, 20030, 20050][X]
+        )  # 20047
     call_method_11000()  # 20048
     goto(20040)  # 20049
     print("Ett staket hindrar dej att gå ditåt!")  # 20050
@@ -1406,7 +1576,9 @@ def call_method_15200():
         goto(20061)  # 20058
     if X == 0:
         goto(20054)  # 20059
-    goto([20063, 20030, 20040, 20155, 20063, 20063, 20054, 20065, 20020, 2107][X])  # 20060
+    goto(
+        [20063, 20030, 20040, 20155, 20063, 20063, 20054, 20065, 20020, 2107][X]
+    )  # 20060
     print("Du är på en strand som fortsätter åt öster. Långt bort i öster")  # 20061
     print("skymtar man en brygga. Åt norr och söder är det skog.")  # 20062
     print("Ett staket hindrar dej att gå åt väster, nordväst eller sydväst.")  # 20063
@@ -1482,7 +1654,9 @@ def call_method_15200():
     print("Du är i skogen, sydväst om sjön.")  # 20166
     call_method_15200()  # 20168
     if X != 0:
-        goto([20178, 20180, 20155, 20240, 20178, 20178, 20173, 20255, 20176][X])  # 20172
+        goto(
+            [20178, 20180, 20155, 20240, 20178, 20178, 20173, 20255, 20176][X]
+        )  # 20172
     call_method_11000()  # 20173
     goto(20165)  # 20174
     print("Kan du gå på vattnet?")  # 20176
@@ -1535,7 +1709,9 @@ def call_method_15200():
     print("Du är i skogen.")  # 20241
     call_method_15200()  # 20243
     if X != 0:
-        goto([20251, 20255, 20165, 20251, 20251, 20251, 20248, 20251, 20180][X])  # 20247
+        goto(
+            [20251, 20255, 20165, 20251, 20251, 20251, 20248, 20251, 20180][X]
+        )  # 20247
     call_method_11000()  # 20248
     goto(20240)  # 20249
     print("Ett staket hindrar dej att gå ditåt.")  # 20251
@@ -1564,7 +1740,9 @@ def call_method_15200():
     print("Du är i skogen, sydost om sjön.")  # 20286
     call_method_15200()  # 20288
     if X != 0:
-        goto([20270, 20297, 20330, 20315, 20295, 20300, 20293, 20297, 20297][X])  # 20292
+        goto(
+            [20270, 20297, 20330, 20315, 20295, 20300, 20293, 20297, 20297][X]
+        )  # 20292
     call_method_11000()  # 20293
     goto(20285)  # 20294
     print("Kan du gå på vattnet?")  # 20295
@@ -1584,7 +1762,9 @@ def call_method_15200():
     print("Du är i skogen.")  # 20316
     call_method_15200()  # 20318
     if X != 0:
-        goto([20300, 20327, 20285, 20327, 20270, 20327, 20324, 20327, 20327][X])  # 20322
+        goto(
+            [20300, 20327, 20285, 20327, 20270, 20327, 20324, 20327, 20327][X]
+        )  # 20322
     call_method_11000()  # 20324
     goto(20315)  # 20325
     print("Ett staket hindrar dej att gå ditåt.")  # 20327
@@ -1830,7 +2010,7 @@ def call_method_15200():
     print("Larmcentralen, var god dröj.")
     time.sleep(20)  # 27404
     if S:  # 27406
-        A_ = input("  Var god dröj  ") # _A_
+        A_ = input("  Var god dröj  ")  # _A_
         time.sleep(30)
         goto(27406)
     print("LARMCENTRAlen. Vi fixar allt - snabbt!")  # 27408
@@ -2023,7 +2203,7 @@ def call_method_15200():
     if Z == 80:
         goto(6069)  # 29050
     B = 0  # 29055
-    if random.randint(0, 3) == 3: # 29060
+    if random.randint(0, 3) == 3:  # 29060
         S[3] = 0
         S[41] = 1
         goto(6069)
@@ -2180,7 +2360,9 @@ def call_method_15200():
         goto(40030)  # 40017
     print("Du är i Osvalds rum.")
     goto(40100)  # 40020
-    print("Du är i Osvalds rum, ett rum med fyra dörrar. På den högra står det")  # 40030
+    print(
+        "Du är i Osvalds rum, ett rum med fyra dörrar. På den högra står det"
+    )  # 40030
     print("ZZZZ, på den vänstra står det THORVALD och på den rakt fram")  # 40031
     print("står det GARDEROB.")  # 40032
     if S[15] == 0 and S[7] == 1:
@@ -2222,10 +2404,10 @@ def call_method_15200():
     goto(41040)  # 41120
 
 
-def call_method_6000():  #? semi-done
+def call_method_6000():  # ? semi-done
     if _DEBUG:
         time.sleep(0.5)
-        print('call_method_6000')
+        print("call_method_6000")
     # ```` RUMSBESKRIVNING ```````````` TA ````````` SLÄPP ````````````  # 06000
     if S[2] == 335 and random.random() > 0.5:  # 06002
         print("Plötsligt kommer Thorvald fram och säjer:")
@@ -4061,7 +4243,7 @@ I1 = 1  # 09269
 I = INSTR(I1, A_, " ")  # 09270
 if I < 1 or I >= len(A_):
     goto(9276)  # 09271
-D = ASCII(MID_(A_, I + 1, 1))  # 09272
+D = ord(MID_(A_, I + 1, 1))  # 09272
 if D > 47 and D < 58:
     S[40] = D - 48
 goto(9278)  # 09273
@@ -4101,7 +4283,7 @@ print("Hissen går till" + S[40] + "an.")  # 09313
 goto(9356)  # 09314
 A_ = FNI_("")
 print()  # 09315
-if ASCII(A_) > 48 and ASCII(A_) < 58:
+if ord(A_) > 48 and ord(A_) < 58:
     S[40] = VAL(FNL_(A_, 1))
 goto(9335)  # 09316
 if FNL_(A_, 1) != "N" and FNL_(A_, 1) != "n":
@@ -4109,7 +4291,7 @@ if FNL_(A_, 1) != "N" and FNL_(A_, 1) != "n":
 goto(9330)  # 09318
 print("Skrik inte på hjälp innan det hemska börjar!")  # 09322
 goto(9308)  # 09323
-if ASCII(A_) > 48 and ASCII(A_) < 58:
+if ord(A_) > 48 and ord(A_) < 58:
     goto(9316)  # 09330
 if X1 == 1:
     goto(9300)  # 09331
@@ -4461,7 +4643,6 @@ S[2] = S[2] - 5
 goto(10052)  # 10096
 
 
-
 if ERROR:  # 90000
     goto(97000)  # XXXXX NU BÖRJAR VI XXXXX
 W_[3] = TIME_
@@ -4515,8 +4696,8 @@ S[24] = 6
 J[0] = 100
 for I in range(1, 12):  # 90202
     pass  # ? READ A_(I,1),A_(I,2),A_(I,3),A_(I,4),A[I]  # 90204
-#? for I in range(15, A[0]):  # 90208
-#?     pass  # ? READ A_(I,1),A_(I,2),A_(I,3),A_(I,4),A[I]  # 90210
+# ? for I in range(15, A[0]):  # 90208
+# ?     pass  # ? READ A_(I,1),A_(I,2),A_(I,3),A_(I,4),A[I]  # 90210
 goto(20000)  # 90214
 
 if ERR != 27:
@@ -4537,6 +4718,7 @@ print("? Fel på rad", ERL, ". Felkod:", ERR)  # 97004
 # ? RESUME  # 97006
 # %%%%% Raderna 97010 - 98034 behövs bara på Oden och Nadja  # 97010
 #! 97010 - 98034 borttagna
+
 
 def call_method_99000(skip_name=False):
     # XXX SLUT XXXX  # 99000
@@ -4582,7 +4764,9 @@ def call_method_99000(skip_name=False):
         print("Du är nu invald i stugrådet.")  # 99170
 
     if I - S[2] > 0:
-        print(f"För att komma upp i nästa klass behöver Du {I - S[2]} poäng till.")  # 99200
+        print(
+            f"För att komma upp i nästa klass behöver Du {I - S[2]} poäng till."
+        )  # 99200
 
     # Eventuell loggning av resultat, 99302 - 99500 kan tas bort  # 99300
     #! 99300 - 99500 borttagna
